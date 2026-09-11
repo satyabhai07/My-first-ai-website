@@ -169,8 +169,112 @@ button:hover {
         font-size: 32px;
     }
 }
-    
 
+/* ABOUT */
+
+.about {
+    padding: 100px 8%;
+    background: #f5f7fb;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 40px;
+    margin-bottom: 25px;
+}
+
+.about p {
+    color: #6b7280;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+
+/* CONTACT */
+
+.contact {
+    padding: 100px 20px;
+    background: white;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.contact > p {
+    color: #6b7280;
+    margin-bottom: 40px;
+}
+
+form {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+
+/* FOOTER */
+
+footer {
+    padding: 30px 20px;
+    background: #111827;
+    color: white;
+    text-align: center;
+}
+
+footer p {
+    color: #9ca3af;
+    margin-bottom: 0;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .about h2,
+    .contact h2 {
+        font-size: 32px;
+    }
+
+    .about p {
+        font-size: 16px;
+    }
+
+    .contact {
+        padding: 70px 20px;
+    }
+}
     .hero h1 {
         font-size: 40px;
     }
