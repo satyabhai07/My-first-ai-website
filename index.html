@@ -804,40 +804,44 @@
             Send me a message and let's talk about it.
         </p>
 
+<form
+    action="https://formspree.io/f/mdeojypd"
+    method="POST"
+    class="contact-form"
+>
 
-        <form onsubmit="submitForm(event)" class="contact-form">
+    <div class="input-row">
 
-            <div class="input-row">
+        <input
+            type="text"
+            name="name"
+            placeholder="Your name"
+            required
+        >
 
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Your name"
-                    required
-                >
+        <input
+            type="email"
+            name="email"
+            placeholder="Your email"
+            required
+        >
 
-                <input
-                    type="email"
-                    placeholder="Your email"
-                    required
-                >
+    </div>
 
-            </div>
+    <textarea
+        name="message"
+        placeholder="Tell me about your project..."
+        rows="5"
+        required
+    ></textarea>
 
-            <textarea
-                placeholder="Tell me about your project..."
-                rows="5"
-                required
-            ></textarea>
+    <button type="submit" class="btn btn-primary submit-btn">
+        Send Message
+        <span>↗</span>
+    </button>
 
-            <button type="submit" class="btn btn-primary submit-btn">
-                Send Message
-                <span>↗</span>
-            </button>
-
-            <p id="form-message"></p>
-
-        </form>
+</form>
+        
 
     </div>
 
