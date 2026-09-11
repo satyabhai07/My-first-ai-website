@@ -18,7 +18,7 @@
 <!-- ================= NAVBAR ================= -->
 
 <header class="navbar">
-    <div class="nav-container">
+g   <div class="nav-container">
 
         <a href="#home" class="logo">PIHU<span>.</span></a>
 
@@ -804,6 +804,7 @@
             Send me a message and let's talk about it.
         </p>
 
+
 <form
     id="contactForm"
     class="contact-form"
@@ -813,6 +814,7 @@
 
         <input
             type="text"
+            id="name"
             name="name"
             placeholder="Your name"
             required
@@ -820,6 +822,7 @@
 
         <input
             type="email"
+            id="email"
             name="email"
             placeholder="Your email"
             required
@@ -828,6 +831,7 @@
     </div>
 
     <textarea
+        id="message"
         name="message"
         placeholder="Tell me about your project..."
         rows="5"
@@ -992,6 +996,6 @@ if (contactForm) {
         contactForm.reset();
     });
 }
-            </script>
+</script>
 </body>
 </html>
