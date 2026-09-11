@@ -1387,7 +1387,36 @@ async function loadSettings() {
         "Settings loaded";
 
 }
+async function loadOwnerProfile() {
 
+    const {
+        data: {
+            user
+        },
+        error
+    } = await supabase.auth.getUser();
+
+    if (error || !user) {
+        console.error("Owner profile error:", error);
+        return;
+    }
+
+    const emailInput =
+        document.getElementById("ownerEmail");
+
+    const nameInput =
+        document.getElementById("ownerName");
+
+    if (emailInput) {
+        emailInput.value =
+            user.email || "";
+    }
+
+    if (nameInput) {
+        nameInput.value =
+            user.user_metadata?.name || "";
+    }
+}
 
 /* SAVE SETTINGS */
 
