@@ -192,7 +192,7 @@ body {
     color: var(--red);
 }
 
-/* ANALYTICS */
+/* MESSAGE ANALYTICS */
 
 .analytics {
     display: grid;
@@ -292,6 +292,140 @@ body {
     font-size: 17px;
     font-weight: bold;
 }
+
+
+/* ADVANCED VISITOR ANALYTICS */
+
+.visitor-analytics {
+    margin-bottom: 25px;
+}
+
+.analytics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.analytics-header h2 {
+    font-size: 20px;
+}
+
+.analytics-header p {
+    color: #666;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.analytics-updated {
+    color: #555;
+    font-size: 10px;
+    border: 1px solid #292929;
+    padding: 7px 10px;
+    border-radius: 20px;
+}
+
+.visitor-cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.visitor-card {
+    background: #080808;
+    border: 1px solid #1c1c1c;
+    border-radius: 14px;
+    padding: 20px;
+    min-height: 105px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: .25s;
+}
+
+.visitor-card:hover {
+    border-color: #3a3a3a;
+    transform: translateY(-2px);
+}
+
+.visitor-card span {
+    color: #777;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.visitor-card strong {
+    color: #fff;
+    font-size: 29px;
+    font-weight: 700;
+}
+
+.visitor-chart-panel {
+    background: #080808;
+    border: 1px solid #1c1c1c;
+    border-radius: 14px;
+    padding: 22px;
+}
+
+.visitor-chart-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.visitor-chart-title h3 {
+    font-size: 16px;
+}
+
+.visitor-chart-title span {
+    color: #555;
+    font-size: 10px;
+}
+
+.visitor-chart {
+    height: 210px;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    border-bottom: 1px solid #202020;
+    padding: 0 5px;
+}
+
+.visitor-day {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 7px;
+}
+
+.visitor-bar {
+    width: 100%;
+    max-width: 45px;
+    min-height: 3px;
+    background: #fff;
+    border-radius: 5px 5px 0 0;
+    transition: height .5s ease;
+}
+
+.visitor-count {
+    color: #aaa;
+    font-size: 10px;
+}
+
+.visitor-label {
+    color: #555;
+    font-size: 9px;
+    margin-bottom: -20px;
+    transform: translateY(20px);
+}
+
 
 /* SETTINGS */
 
@@ -454,6 +588,7 @@ body {
     background: #ddd;
 }
 
+
 /* OWNER PROFILE */
 
 .section-card {
@@ -534,6 +669,7 @@ body {
     opacity: 0.6;
     cursor: not-allowed;
 }
+
 
 /* MESSAGES */
 
@@ -692,6 +828,7 @@ body {
     color: #555;
 }
 
+
 /* FOOTER */
 
 .footer {
@@ -716,6 +853,7 @@ body {
     cursor: pointer;
 }
 
+
 /* TOAST */
 
 .toast {
@@ -739,7 +877,16 @@ body {
     opacity: 1;
 }
 
+
 /* RESPONSIVE */
+
+@media (max-width: 1000px) {
+
+    .visitor-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
 
 @media (max-width: 900px) {
 
@@ -757,6 +904,10 @@ body {
 
     .setting-item.full {
         grid-column: auto;
+    }
+
+    .visitor-cards {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -843,6 +994,23 @@ body {
         align-items: flex-start;
         gap: 15px;
     }
+
+    .visitor-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .analytics-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .visitor-chart {
+        gap: 5px;
+    }
+
+    .visitor-chart-panel {
+        padding: 15px;
+    }
 }
 </style>
 </head>
@@ -903,7 +1071,7 @@ body {
 
             <button
                 class="refresh-btn"
-                onclick="loadMessages()"
+                onclick="loadMessages(); loadAdvancedAnalytics();"
             >
                 ↻ Refresh
             </button>
@@ -1002,7 +1170,7 @@ body {
     </section>
 
 
-    <!-- ANALYTICS -->
+    <!-- MESSAGE ANALYTICS -->
 
     <section class="analytics">
 
@@ -1108,6 +1276,127 @@ body {
                 </div>
 
             </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADVANCED VISITOR ANALYTICS -->
+
+    <section class="section-card visitor-analytics">
+
+        <div class="analytics-header">
+
+            <div>
+
+                <h2>
+                    Visitor Analytics
+                </h2>
+
+                <p>
+                    Website traffic and visitor overview.
+                </p>
+
+            </div>
+
+            <div
+                class="analytics-updated"
+                id="analyticsUpdated"
+            >
+                Updating...
+            </div>
+
+        </div>
+
+
+        <div class="visitor-cards">
+
+            <div class="visitor-card">
+
+                <span>
+                    Total Visitors
+                </span>
+
+                <strong id="analyticsTotalVisitors">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="visitor-card">
+
+                <span>
+                    Today
+                </span>
+
+                <strong id="analyticsTodayVisitors">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="visitor-card">
+
+                <span>
+                    This Month
+                </span>
+
+                <strong id="analyticsMonthVisitors">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="visitor-card">
+
+                <span>
+                    Total Messages
+                </span>
+
+                <strong id="analyticsTotalMessages">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="visitor-card">
+
+                <span>
+                    Unread Messages
+                </span>
+
+                <strong id="analyticsUnreadMessages">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="visitor-chart-panel">
+
+            <div class="visitor-chart-title">
+
+                <h3>
+                    Visitor Traffic
+                </h3>
+
+                <span>
+                    Last 7 days
+                </span>
+
+            </div>
+
+            <div
+                id="visitorChart"
+                class="visitor-chart"
+            ></div>
 
         </div>
 
@@ -2245,7 +2534,7 @@ function updateStats() {
 }
 
 
-/* ANALYTICS */
+/* MESSAGE ANALYTICS */
 
 function updateAnalytics() {
 
@@ -2302,7 +2591,7 @@ function updateAnalytics() {
 }
 
 
-/* CHART */
+/* MESSAGE CHART */
 
 function renderChart() {
 
@@ -2423,6 +2712,295 @@ function renderChart() {
                         ></div>
 
                         <div class="bar-label">
+                            ${label}
+                        </div>
+
+                    </div>
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* ADVANCED VISITOR ANALYTICS */
+
+async function loadAdvancedAnalytics() {
+
+    try {
+
+        const {
+            data: visitors,
+            error: visitorError
+        } = await supabase
+            .from("visitors")
+            .select("visited_at")
+            .order(
+                "visited_at",
+                {
+                    ascending: true
+                }
+            );
+
+
+        if (visitorError) {
+
+            console.error(
+                "Visitor analytics error:",
+                visitorError
+            );
+
+            document.getElementById(
+                "analyticsUpdated"
+            ).textContent =
+                "Unable to load";
+
+            return;
+
+        }
+
+
+        const visitorList =
+            visitors || [];
+
+
+        const now =
+            new Date();
+
+
+        const todayStart =
+            new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate()
+            );
+
+
+        const monthStart =
+            new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                1
+            );
+
+
+        const totalVisitors =
+            visitorList.length;
+
+
+        const todayVisitors =
+            visitorList.filter(
+                visitor =>
+                    new Date(
+                        visitor.visited_at
+                    ) >= todayStart
+            ).length;
+
+
+        const monthVisitors =
+            visitorList.filter(
+                visitor =>
+                    new Date(
+                        visitor.visited_at
+                    ) >= monthStart
+            ).length;
+
+
+        const unreadMessages =
+            allMessages.filter(
+                message =>
+                    !message.is_read
+            ).length;
+
+
+        document.getElementById(
+            "analyticsTotalVisitors"
+        ).textContent =
+            totalVisitors;
+
+
+        document.getElementById(
+            "analyticsTodayVisitors"
+        ).textContent =
+            todayVisitors;
+
+
+        document.getElementById(
+            "analyticsMonthVisitors"
+        ).textContent =
+            monthVisitors;
+
+
+        document.getElementById(
+            "analyticsTotalMessages"
+        ).textContent =
+            allMessages.length;
+
+
+        document.getElementById(
+            "analyticsUnreadMessages"
+        ).textContent =
+            unreadMessages;
+
+
+        renderVisitorChart(
+            visitorList
+        );
+
+
+        document.getElementById(
+            "analyticsUpdated"
+        ).textContent =
+            "Updated just now";
+
+    } catch (error) {
+
+        console.error(
+            "Advanced analytics exception:",
+            error
+        );
+
+    }
+
+}
+
+
+/* VISITOR CHART */
+
+function renderVisitorChart(
+    visitors
+) {
+
+    const chart =
+        document.getElementById(
+            "visitorChart"
+        );
+
+
+    if (!chart) {
+
+        return;
+
+    }
+
+
+    const now =
+        new Date();
+
+
+    const days = [];
+
+
+    for (
+        let i = 6;
+        i >= 0;
+        i--
+    ) {
+
+        const date =
+            new Date(now);
+
+
+        date.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
+
+        date.setDate(
+            date.getDate() - i
+        );
+
+
+        const next =
+            new Date(date);
+
+
+        next.setDate(
+            next.getDate() + 1
+        );
+
+
+        const count =
+            visitors.filter(
+                visitor => {
+
+                    const visitDate =
+                        new Date(
+                            visitor.visited_at
+                        );
+
+
+                    return (
+                        visitDate >= date &&
+                        visitDate < next
+                    );
+
+                }
+            ).length;
+
+
+        days.push({
+            date,
+            count
+        });
+
+    }
+
+
+    const max =
+        Math.max(
+            ...days.map(
+                day =>
+                    day.count
+            ),
+            1
+        );
+
+
+    chart.innerHTML =
+        days.map(
+            day => {
+
+                const height =
+                    Math.max(
+                        3,
+                        (
+                            day.count /
+                            max
+                        ) *
+                        170
+                    );
+
+
+                const label =
+                    day.date.toLocaleDateString(
+                        undefined,
+                        {
+                            weekday:
+                                "short"
+                        }
+                    );
+
+
+                return `
+                    <div class="visitor-day">
+
+                        <div class="visitor-count">
+                            ${day.count}
+                        </div>
+
+                        <div
+                            class="visitor-bar"
+                            style="height:${height}px"
+                            title="${day.count} visitor${day.count === 1 ? "" : "s"}"
+                        ></div>
+
+                        <div class="visitor-label">
                             ${label}
                         </div>
 
@@ -2715,6 +3293,7 @@ async function(id) {
 
 
     await loadMessages();
+    await loadAdvancedAnalytics();
 
 };
 
@@ -2751,6 +3330,7 @@ async function(id) {
 
 
     await loadMessages();
+    await loadAdvancedAnalytics();
 
 };
 
@@ -2798,6 +3378,7 @@ async function(id) {
 
 
     await loadMessages();
+    await loadAdvancedAnalytics();
 
 };
 
@@ -2903,6 +3484,8 @@ setInterval(
 
         await loadMessages();
 
+        await loadAdvancedAnalytics();
+
     },
     30000
 );
@@ -2935,6 +3518,8 @@ supabase
 
 
             await loadMessages();
+
+            await loadAdvancedAnalytics();
 
 
             showToast(
@@ -3009,6 +3594,8 @@ async function startDashboard() {
 
     await loadMessages();
 
+    await loadAdvancedAnalytics();
+
 }
 
 
@@ -3017,4 +3604,4 @@ startDashboard();
 </script>
 
 </body>
-    </html>
+</html>
