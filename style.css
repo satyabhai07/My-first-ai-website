@@ -56,6 +56,8 @@ textarea {
     font-size: 24px;
     font-weight: 800;
     letter-spacing: -1px;
+    z-index: 1002;
+    position: relative;
 }
 
 .logo span {
@@ -94,6 +96,8 @@ textarea {
     background: none;
     border: none;
     cursor: pointer;
+    z-index: 1002;
+    position: relative;
 }
 
 .menu-btn span {
@@ -961,7 +965,7 @@ footer {
 /* ================= RESPONSIVE ================= */
 
 
-/* ---------- LAPTOP (max-width: 1200px) ---------- */
+/* ---------- LAPTOP ---------- */
 @media (max-width: 1200px) {
     .hero {
         padding: 140px 6% 90px;
@@ -986,7 +990,7 @@ footer {
 }
 
 
-/* ---------- TABLET (max-width: 992px) ---------- */
+/* ---------- TABLET ---------- */
 @media (max-width: 992px) {
     .nav-menu {
         gap: 24px;
@@ -1062,30 +1066,32 @@ footer {
 }
 
 
-/* ---------- MOBILE (max-width: 768px) ---------- */
+/* ---------- MOBILE (Main Fix) ---------- */
 @media (max-width: 768px) {
+
     .navbar {
         padding: 16px 5%;
     }
 
     .menu-btn {
         display: block;
-        position: relative;
-        z-index: 1001;
     }
 
+    /* Full screen mobile menu */
     .nav-menu {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 75%;
+        width: 100%;
         height: 100vh;
-        background: #0b0b0b;
+        background: #080808;
         flex-direction: column;
         justify-content: center;
-        gap: 30px;
-        border-left: 1px solid #222;
-        transition: 0.4s;
+        align-items: center;
+        gap: 28px;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1001;
+        border: none;
     }
 
     .nav-menu.active {
@@ -1093,9 +1099,23 @@ footer {
     }
 
     .nav-menu a {
-        font-size: 18px;
+        font-size: 22px;
+        font-weight: 500;
+        color: #ccc;
+        letter-spacing: 0.5px;
     }
 
+    .nav-menu a:hover {
+        color: #fff;
+    }
+
+    .nav-contact {
+        margin-top: 15px;
+        padding: 14px 28px;
+        font-size: 15px;
+    }
+
+    /* Hamburger to X animation */
     .menu-btn.active span:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
     }
@@ -1108,6 +1128,7 @@ footer {
         transform: translateY(-7px) rotate(-45deg);
     }
 
+    /* Hero */
     .hero {
         min-height: 100vh;
         padding: 120px 6% 70px;
@@ -1132,6 +1153,7 @@ footer {
         display: none;
     }
 
+    /* Sections */
     .section {
         padding: 80px 6%;
     }
@@ -1240,7 +1262,7 @@ footer {
 }
 
 
-/* ---------- SMALL MOBILE (max-width: 480px) ---------- */
+/* ---------- SMALL MOBILE ---------- */
 @media (max-width: 480px) {
     .hero h1 {
         font-size: 40px;
@@ -1302,5 +1324,9 @@ footer {
 
     .phone-screen {
         height: 240px;
+    }
+
+    .nav-menu a {
+        font-size: 20px;
     }
 }
