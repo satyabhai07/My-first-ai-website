@@ -1004,7 +1004,12 @@ const supabase = createClient(
     "https://sctyvhjmmtxjcpdecwfe.supabase.co",
     "sb_publishable_qsyg3Kk-XeSl7TSXKSZchg_0GJuoksR"
 );
-
+                
+await supabase
+    .from("visitors")
+    .insert({
+        visited_at: new Date().toISOString()
+    });
 async function loadWebsiteSettings() {
     const { data, error } = await supabase
         .from("site_settings")
