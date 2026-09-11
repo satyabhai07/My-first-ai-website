@@ -954,19 +954,15 @@ revealElements.forEach(element => {
 <script type="module">
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-const SUPABASE_URL = "https://sctyvhjmmtxjcpdecwfe.supabase.co";
-
-const SUPABASE_KEY = "sb_publishable_qsyg3Kk-XeSl7TSXKSZchg_0GJuoksR";
-
 const supabase = createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
+    "https://sctyvhjmmtxjcpdecwfe.supabase.co",
+    "sb_publishable_qsyg3Kk-XeSl7TSXKSZchg_0GJuoksR"
 );
 
 const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
-    contactForm.addEventListener("submit", async function (event) {
+    contactForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const name = document.getElementById("name").value.trim();
@@ -974,31 +970,28 @@ if (contactForm) {
         const message = document.getElementById("message").value.trim();
 
         if (!name || !email || !message) {
-            alert("Please fill in all fields.");
+            alert("Please fill all fields.");
             return;
         }
 
         const { error } = await supabase
             .from("messages")
-            .insert([
-                {
-                    name: name,
-                    email: email,
-                    message: message
-                }
-            ]);
+            .insert({
+                name: name,
+                email: email,
+                message: message
+            });
 
         if (error) {
-            console.error(error);
-            alert("Something went wrong. Please try again.");
+            console.error("Supabase error:", error);
+            alert("Message failed: " + error.message);
             return;
         }
 
-        alert("Thank you! Your message has been received.");
-
+        alert("Message sent successfully!");
         contactForm.reset();
     });
 }
-</script>
+            </script>
 </body>
 </html>
