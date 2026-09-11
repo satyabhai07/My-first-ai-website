@@ -997,5 +997,100 @@ if (contactForm) {
     });
 }
 </script>
+            <script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const supabase = createClient(
+    "https://sctyvhjmmtxjcpdecwfe.supabase.co",
+    "sb_publishable_qsyg3Kk-XeSl7TSXKSZchg_0GJuoksR"
+);
+
+async function loadWebsiteSettings() {
+    const { data, error } = await supabase
+        .from("site_settings")
+        .select("*")
+        .order("id", { ascending: true })
+        .limit(1)
+        .maybeSingle();
+
+    if (error) {
+        console.error("Settings error:", error);
+        return;
+    }
+
+    if (!data) return;
+
+    // Maintenance mode
+    if (data.website_status === "MAINTENANCE") {
+        document.body.innerHTML = `
+            <div style="
+                min-height:100vh;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                background:#000;
+                color:#fff;
+                text-align:center;
+                padding:30px;
+                font-family:Arial,sans-serif;
+            ">
+                <div>
+                    <h1 style="font-size:42px;margin-bottom:15px;">
+                        Website Under Maintenance
+                    </h1>
+                    <p style="color:#aaa;font-size:18px;">
+                        We'll be back soon.
+                    </p>
+                </div>
+            </div>
+        `;
+        return;
+    }
+
+    // Announcement
+    if (data.announcement && data.announcement.trim() !== "") {
+        const banner = document.createElement("div");
+
+        banner.innerHTML = data.announcement;
+
+        banner.style.cssText = `
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            z-index:99999;
+            background:#fff;
+            color:#000;
+            padding:12px 20px;
+            text-align:center;
+            font-size:14px;
+            font-weight:600;
+            border-bottom:1px solid #ddd;
+        `;
+
+        document.body.prepend(banner);
+    }
+
+    // Contact form ON/OFF
+    if (data.contact_form_enabled === false) {
+        const form = document.getElementById("contactForm");
+
+        if (form) {
+            form.innerHTML = `
+                <div style="
+                    padding:30px;
+                    text-align:center;
+                    border:1px solid #333;
+                    color:#aaa;
+                ">
+                    Contact form is currently unavailable.
+                </div>
+            `;
+        }
+    }
+}
+
+loadWebsiteSettings();
+</script>
 </body>
 </html>
