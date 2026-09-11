@@ -47,7 +47,6 @@ textarea {
 .nav-container {
     max-width: 1200px;
     margin: auto;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -112,10 +111,8 @@ textarea {
 .hero {
     min-height: 100vh;
     position: relative;
-
     display: flex;
     align-items: center;
-
     padding: 150px 7% 100px;
 }
 
@@ -123,16 +120,9 @@ textarea {
     position: absolute;
     width: 500px;
     height: 500px;
-
     right: -150px;
     top: 100px;
-
-    background: radial-gradient(
-        circle,
-        rgba(255,255,255,0.09),
-        transparent 65%
-    );
-
+    background: radial-gradient(circle, rgba(255,255,255,0.09), transparent 65%);
     filter: blur(20px);
     pointer-events: none;
 }
@@ -147,15 +137,11 @@ textarea {
     display: inline-flex;
     align-items: center;
     gap: 9px;
-
     padding: 8px 14px;
-
     border: 1px solid #292929;
     border-radius: 50px;
-
     color: #aaa;
     font-size: 12px;
-
     margin-bottom: 35px;
 }
 
@@ -164,7 +150,6 @@ textarea {
     height: 7px;
     background: #fff;
     border-radius: 50%;
-
     box-shadow: 0 0 12px rgba(255,255,255,0.8);
 }
 
@@ -210,14 +195,10 @@ textarea {
     align-items: center;
     justify-content: center;
     gap: 12px;
-
     padding: 15px 23px;
-
     border-radius: 9px;
-
     font-size: 13px;
     font-weight: 700;
-
     transition: 0.3s;
 }
 
@@ -266,11 +247,9 @@ textarea {
     position: absolute;
     bottom: 35px;
     right: 7%;
-
     color: #555;
     font-size: 10px;
     letter-spacing: 2px;
-
     display: flex;
     align-items: center;
     gap: 10px;
@@ -305,7 +284,6 @@ textarea {
 
 .services-grid {
     margin-top: 70px;
-
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 18px;
@@ -313,38 +291,25 @@ textarea {
 
 .service-card {
     position: relative;
-
     min-height: 330px;
-
     padding: 35px;
-
     border: 1px solid #202020;
     border-radius: 18px;
-
     background: #0d0d0d;
-
     overflow: hidden;
-
     transition: 0.4s;
 }
 
 .service-card::before {
     content: "";
-
     position: absolute;
-
     width: 180px;
     height: 180px;
-
     right: -90px;
     bottom: -90px;
-
     background: #fff;
-
     opacity: 0.035;
-
     border-radius: 50%;
-
     transition: 0.4s;
 }
 
@@ -366,7 +331,6 @@ textarea {
     position: absolute;
     top: 35px;
     right: 35px;
-
     color: #444;
     font-size: 11px;
 }
@@ -409,7 +373,6 @@ textarea {
 
 .projects-grid {
     margin-top: 70px;
-
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 22px;
@@ -417,12 +380,9 @@ textarea {
 
 .project-card {
     background: #0d0d0d;
-
     border: 1px solid #202020;
     border-radius: 18px;
-
     overflow: hidden;
-
     transition: 0.4s;
 }
 
@@ -437,13 +397,10 @@ textarea {
 
 .project-preview {
     height: 380px;
-
     padding: 35px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     overflow: hidden;
 }
 
@@ -452,33 +409,15 @@ textarea {
 }
 
 .preview-one {
-    background:
-        radial-gradient(
-            circle at 70% 20%,
-            #383838,
-            transparent 40%
-        ),
-        #171717;
+    background: radial-gradient(circle at 70% 20%, #383838, transparent 40%), #171717;
 }
 
 .preview-two {
-    background:
-        radial-gradient(
-            circle at 20% 20%,
-            #2d2d2d,
-            transparent 40%
-        ),
-        #111;
+    background: radial-gradient(circle at 20% 20%, #2d2d2d, transparent 40%), #111;
 }
 
 .preview-three {
-    background:
-        radial-gradient(
-            circle at 50% 20%,
-            #353535,
-            transparent 40%
-        ),
-        #151515;
+    background: radial-gradient(circle at 50% 20%, #353535, transparent 40%), #151515;
 }
 
 
@@ -487,14 +426,10 @@ textarea {
 .browser {
     width: 82%;
     max-width: 750px;
-
     background: #080808;
-
     border: 1px solid #333;
     border-radius: 12px;
-
     box-shadow: 0 30px 70px rgba(0,0,0,0.5);
-
     transform: perspective(900px) rotateX(3deg);
     transition: 0.5s;
 }
@@ -505,23 +440,17 @@ textarea {
 
 .browser-top {
     height: 28px;
-
     display: flex;
     align-items: center;
-
     gap: 5px;
-
     padding: 0 12px;
-
     border-bottom: 1px solid #222;
 }
 
 .browser-top span {
     width: 6px;
     height: 6px;
-
     background: #555;
-
     border-radius: 50%;
 }
 
@@ -563,9 +492,7 @@ textarea {
 .mock-button {
     width: 60px;
     height: 18px;
-
     background: #eee;
-
     border-radius: 3px;
 }
 
@@ -577,7 +504,6 @@ textarea {
 .mock-cards span {
     flex: 1;
     height: 45px;
-
     border: 1px solid #292929;
     border-radius: 5px;
 }
@@ -588,30 +514,21 @@ textarea {
 .dashboard {
     width: 80%;
     max-width: 650px;
-
     display: flex;
-
     background: #090909;
-
     border: 1px solid #303030;
     border-radius: 12px;
-
     overflow: hidden;
-
     box-shadow: 0 25px 60px rgba(0,0,0,0.5);
 }
 
 .dashboard-sidebar {
     width: 55px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
-
     gap: 28px;
-
     padding: 20px 0;
-
     border-right: 1px solid #222;
 }
 
@@ -622,9 +539,7 @@ textarea {
 .dashboard-sidebar span {
     width: 14px;
     height: 4px;
-
     background: #333;
-
     border-radius: 5px;
 }
 
@@ -641,7 +556,6 @@ textarea {
 .dashboard-header div {
     width: 80px;
     height: 5px;
-
     background: #333;
     border-radius: 5px;
 }
@@ -667,51 +581,26 @@ textarea {
 
 .chart {
     height: 110px;
-
     margin-top: 20px;
-
     display: flex;
     align-items: flex-end;
     gap: 8px;
-
     border-bottom: 1px solid #222;
 }
 
 .chart i {
     flex: 1;
-
     background: #444;
-
     border-radius: 3px 3px 0 0;
 }
 
-.chart i:nth-child(1) {
-    height: 30%;
-}
-
-.chart i:nth-child(2) {
-    height: 45%;
-}
-
-.chart i:nth-child(3) {
-    height: 35%;
-}
-
-.chart i:nth-child(4) {
-    height: 65%;
-}
-
-.chart i:nth-child(5) {
-    height: 55%;
-}
-
-.chart i:nth-child(6) {
-    height: 80%;
-}
-
-.chart i:nth-child(7) {
-    height: 95%;
-}
+.chart i:nth-child(1) { height: 30%; }
+.chart i:nth-child(2) { height: 45%; }
+.chart i:nth-child(3) { height: 35%; }
+.chart i:nth-child(4) { height: 65%; }
+.chart i:nth-child(5) { height: 55%; }
+.chart i:nth-child(6) { height: 80%; }
+.chart i:nth-child(7) { height: 95%; }
 
 .dashboard-bottom {
     display: flex;
@@ -722,7 +611,6 @@ textarea {
 .dashboard-bottom span {
     height: 35px;
     flex: 1;
-
     border: 1px solid #222;
     border-radius: 5px;
 }
@@ -733,16 +621,11 @@ textarea {
 .phone {
     width: 190px;
     height: 310px;
-
     padding: 7px;
-
     background: #050505;
-
     border: 2px solid #3b3b3b;
     border-radius: 25px;
-
     box-shadow: 0 25px 60px rgba(0,0,0,0.6);
-
     transform: rotate(-5deg);
     transition: 0.5s;
 }
@@ -754,53 +637,36 @@ textarea {
 .phone-top {
     width: 50px;
     height: 6px;
-
     margin: 2px auto 7px;
-
     background: #292929;
     border-radius: 10px;
 }
 
 .phone-screen {
     height: 278px;
-
     padding: 15px;
-
     background: #111;
-
     border-radius: 17px;
 }
 
 .app-header {
     display: flex;
     justify-content: space-between;
-
     font-size: 9px;
 }
 
 .app-image {
     height: 100px;
-
     margin: 15px 0;
-
     border-radius: 10px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #222,
-            #444
-        );
+    background: linear-gradient(135deg, #222, #444);
 }
 
 .app-line {
     width: 65%;
     height: 6px;
-
     background: #333;
-
     border-radius: 10px;
-
     margin-top: 8px;
 }
 
@@ -818,9 +684,7 @@ textarea {
 .app-buttons span {
     flex: 1;
     height: 25px;
-
     background: #333;
-
     border-radius: 5px;
 }
 
@@ -855,10 +719,8 @@ textarea {
 
 .project-info > p {
     max-width: 600px;
-
     color: #777;
     font-size: 13px;
-
     margin: 15px 0 20px;
 }
 
@@ -870,32 +732,24 @@ textarea {
 
 .tags span {
     padding: 6px 10px;
-
     border: 1px solid #282828;
     border-radius: 30px;
-
     color: #888;
-
     font-size: 9px;
 }
 
 .project-buttons {
     display: flex;
     gap: 10px;
-
     margin-top: 23px;
 }
 
 .project-btn {
     padding: 10px 15px;
-
     border: 1px solid #292929;
     border-radius: 7px;
-
     font-size: 10px;
-
     color: #aaa;
-
     transition: 0.3s;
 }
 
@@ -931,7 +785,6 @@ textarea {
     color: #ddd;
     font-size: 24px;
     line-height: 1.4;
-
     margin-bottom: 25px;
 }
 
@@ -942,10 +795,8 @@ textarea {
 
 .about-details {
     margin-top: 45px;
-
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-
     gap: 20px;
 }
 
@@ -970,9 +821,7 @@ textarea {
 
 .contact-section {
     padding: 140px 5%;
-
     border-top: 1px solid #171717;
-
     text-align: center;
 }
 
@@ -984,16 +833,13 @@ textarea {
 .contact-section h2 {
     font-size: clamp(50px, 8vw, 95px);
     line-height: 0.95;
-
     letter-spacing: -5px;
-
     margin: 20px 0;
 }
 
 .contact-text {
     max-width: 500px;
     margin: 0 auto 40px;
-
     color: #777;
     font-size: 14px;
 }
@@ -1012,19 +858,13 @@ textarea {
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-
     padding: 17px;
-
     background: #101010;
-
     border: 1px solid #222;
     border-radius: 8px;
-
     color: white;
     outline: none;
-
     font-size: 13px;
-
     transition: 0.3s;
 }
 
@@ -1041,7 +881,6 @@ textarea {
 .submit-btn {
     border: none;
     cursor: pointer;
-
     margin-top: 15px;
 }
 
@@ -1051,9 +890,7 @@ textarea {
 
 #form-message.success {
     display: block;
-
     margin-top: 20px;
-
     color: #aaa;
     font-size: 12px;
 }
@@ -1063,23 +900,19 @@ textarea {
 
 footer {
     padding: 60px 5% 25px;
-
     border-top: 1px solid #171717;
 }
 
 .footer-container {
     max-width: 1200px;
     margin: auto;
-
     display: flex;
     justify-content: space-between;
-
     gap: 50px;
 }
 
 .footer-container p {
     margin-top: 15px;
-
     color: #555;
     font-size: 12px;
 }
@@ -1092,7 +925,6 @@ footer {
 .footer-links a {
     color: #666;
     font-size: 11px;
-
     transition: 0.3s;
 }
 
@@ -1103,16 +935,11 @@ footer {
 .footer-bottom {
     max-width: 1200px;
     margin: 60px auto 0;
-
     padding-top: 20px;
-
     border-top: 1px solid #171717;
-
     display: flex;
     justify-content: space-between;
-
     color: #444;
-
     font-size: 9px;
 }
 
@@ -1122,10 +949,7 @@ footer {
 .reveal {
     opacity: 0;
     transform: translateY(30px);
-
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .reveal.show {
@@ -1134,10 +958,112 @@ footer {
 }
 
 
-/* ================= MOBILE ================= */
+/* ================= RESPONSIVE ================= */
 
-@media (max-width: 800px) {
 
+/* ---------- LAPTOP (max-width: 1200px) ---------- */
+@media (max-width: 1200px) {
+    .hero {
+        padding: 140px 6% 90px;
+    }
+
+    .hero h1 {
+        font-size: clamp(50px, 8vw, 90px);
+        letter-spacing: -5px;
+    }
+
+    .section {
+        padding: 110px 5%;
+    }
+
+    .services-grid {
+        gap: 16px;
+    }
+
+    .about-grid {
+        gap: 70px;
+    }
+}
+
+
+/* ---------- TABLET (max-width: 992px) ---------- */
+@media (max-width: 992px) {
+    .nav-menu {
+        gap: 24px;
+    }
+
+    .hero {
+        padding: 130px 5% 80px;
+    }
+
+    .hero h1 {
+        font-size: clamp(48px, 9vw, 80px);
+        letter-spacing: -4px;
+    }
+
+    .hero-text {
+        font-size: 16px;
+    }
+
+    .hero-stats {
+        gap: 35px;
+        margin-top: 55px;
+    }
+
+    .section {
+        padding: 100px 5%;
+    }
+
+    .section-heading h2,
+    .section-top h2,
+    .about-left h2 {
+        font-size: clamp(40px, 6vw, 60px);
+        letter-spacing: -3px;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .service-card {
+        min-height: 300px;
+        padding: 28px;
+    }
+
+    .projects-grid {
+        gap: 18px;
+    }
+
+    .project-preview {
+        height: 340px;
+        padding: 25px;
+    }
+
+    .project-card:not(.project-featured) .project-preview {
+        height: 300px;
+    }
+
+    .about-grid {
+        gap: 50px;
+    }
+
+    .about-big {
+        font-size: 22px;
+    }
+
+    .contact-section {
+        padding: 110px 5%;
+    }
+
+    .contact-section h2 {
+        font-size: clamp(48px, 8vw, 75px);
+    }
+}
+
+
+/* ---------- MOBILE (max-width: 768px) ---------- */
+@media (max-width: 768px) {
     .navbar {
         padding: 16px 5%;
     }
@@ -1150,22 +1076,15 @@ footer {
 
     .nav-menu {
         position: fixed;
-
         top: 0;
         right: -100%;
-
         width: 75%;
         height: 100vh;
-
         background: #0b0b0b;
-
         flex-direction: column;
         justify-content: center;
-
         gap: 30px;
-
         border-left: 1px solid #222;
-
         transition: 0.4s;
     }
 
@@ -1189,15 +1108,14 @@ footer {
         transform: translateY(-7px) rotate(-45deg);
     }
 
-
     .hero {
         min-height: 100vh;
-        padding: 130px 6% 80px;
+        padding: 120px 6% 70px;
     }
 
     .hero h1 {
-        font-size: clamp(48px, 15vw, 75px);
-        letter-spacing: -4px;
+        font-size: clamp(42px, 12vw, 65px);
+        letter-spacing: -3.5px;
     }
 
     .hero-text {
@@ -1205,49 +1123,47 @@ footer {
     }
 
     .hero-stats {
-        gap: 25px;
-        margin-top: 50px;
+        gap: 22px;
+        margin-top: 45px;
+        flex-wrap: wrap;
     }
 
     .scroll-down {
         display: none;
     }
 
-
     .section {
-        padding: 90px 6%;
+        padding: 80px 6%;
     }
 
     .section-heading h2,
     .section-top h2,
     .about-left h2 {
-        font-size: 45px;
-        letter-spacing: -3px;
+        font-size: 42px;
+        letter-spacing: -2.5px;
     }
-
 
     .services-grid {
         grid-template-columns: 1fr;
-        margin-top: 45px;
+        margin-top: 40px;
     }
 
     .service-card {
-        min-height: 290px;
+        min-height: 280px;
     }
-
 
     .section-top {
         display: block;
     }
 
     .section-description {
-        margin-top: 25px;
+        margin-top: 20px;
+        max-width: 100%;
     }
-
 
     .projects-grid {
         grid-template-columns: 1fr;
-        margin-top: 45px;
+        margin-top: 40px;
     }
 
     .project-featured {
@@ -1256,7 +1172,7 @@ footer {
 
     .project-preview,
     .project-card:not(.project-featured) .project-preview {
-        height: 280px;
+        height: 270px;
         padding: 20px;
     }
 
@@ -1269,21 +1185,20 @@ footer {
     }
 
     .mock-hero {
-        padding: 35px 0;
+        padding: 30px 0;
     }
 
     .mock-hero h3 {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .dashboard {
         width: 95%;
     }
 
-
     .about-grid {
         grid-template-columns: 1fr;
-        gap: 45px;
+        gap: 40px;
     }
 
     .about-big {
@@ -1294,13 +1209,12 @@ footer {
         grid-template-columns: 1fr 1fr 1fr;
     }
 
-
     .contact-section {
-        padding: 100px 6%;
+        padding: 90px 6%;
     }
 
     .contact-section h2 {
-        font-size: 52px;
+        font-size: 48px;
         letter-spacing: -3px;
     }
 
@@ -1308,27 +1222,29 @@ footer {
         grid-template-columns: 1fr;
     }
 
-
     .footer-container {
         flex-direction: column;
+        gap: 30px;
     }
 
     .footer-links {
         flex-wrap: wrap;
+        gap: 18px;
     }
 
     .footer-bottom {
         flex-direction: column;
         gap: 10px;
+        text-align: center;
     }
-
 }
 
 
-@media (max-width: 450px) {
-
+/* ---------- SMALL MOBILE (max-width: 480px) ---------- */
+@media (max-width: 480px) {
     .hero h1 {
-        font-size: 48px;
+        font-size: 40px;
+        letter-spacing: -2.5px;
     }
 
     .hero-buttons {
@@ -1341,11 +1257,17 @@ footer {
     }
 
     .hero-stats {
-        gap: 18px;
+        gap: 16px;
     }
 
     .hero-stats strong {
         font-size: 20px;
+    }
+
+    .section-heading h2,
+    .section-top h2,
+    .about-left h2 {
+        font-size: 36px;
     }
 
     .project-info {
@@ -1366,6 +1288,19 @@ footer {
 
     .about-details {
         grid-template-columns: 1fr;
+        gap: 18px;
     }
 
+    .contact-section h2 {
+        font-size: 40px;
+    }
+
+    .phone {
+        width: 160px;
+        height: 270px;
+    }
+
+    .phone-screen {
+        height: 240px;
+    }
 }
