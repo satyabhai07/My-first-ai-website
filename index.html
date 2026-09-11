@@ -140,8 +140,20 @@
 </footer>
 
     <script>
-        function showMessage() {
-            alert("Welcome to my website!");
+        function submitForm(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+
+    document.getElementById("form-message").innerText =
+        "Thank you, " + name + "! Your message has been received.";
+
+    document.getElementById("form-message").style.marginTop = "20px";
+
+    document.getElementById("form-message").style.color = "green";
+
+    document.querySelector("form").reset();
         }
     </script>
 
