@@ -17,7 +17,6 @@
 :root {
     --bg: #050505;
     --panel: #0b0b0b;
-    --panel2: #101010;
     --border: #202020;
     --text: #fff;
     --muted: #777;
@@ -193,10 +192,15 @@ body {
     margin-bottom: 25px;
 }
 
-.panel {
+.panel,
+.settings-panel,
+.content {
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 18px;
+}
+
+.panel {
     padding: 24px;
 }
 
@@ -282,9 +286,6 @@ body {
 /* SETTINGS */
 
 .settings-panel {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 18px;
     padding: 24px;
     margin-bottom: 25px;
 }
@@ -313,7 +314,6 @@ body {
     border-radius: 20px;
     color: #aaa;
     font-size: 10px;
-    white-space: nowrap;
 }
 
 .settings-grid {
@@ -444,10 +444,9 @@ body {
     background: #ddd;
 }
 
+/* MESSAGES */
+
 .content {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 18px;
     overflow: hidden;
 }
 
@@ -664,10 +663,6 @@ body {
 }
 
 @media (max-width: 650px) {
-    .navbar {
-        padding: 0 5%;
-    }
-
     .container {
         width: 92%;
         margin: 35px auto;
@@ -715,12 +710,6 @@ body {
         flex-wrap: wrap;
     }
 
-    .footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
     .settings-header {
         align-items: flex-start;
         flex-direction: column;
@@ -732,6 +721,12 @@ body {
 
     .save-settings {
         width: 100%;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
     }
 }
 </style>
@@ -756,7 +751,6 @@ body {
 
 </nav>
 
-
 <main class="container">
 
     <section class="header">
@@ -773,12 +767,10 @@ body {
                 onclick="showNotifications()"
             >
                 🔔
-
                 <span
                     id="notificationBadge"
                     class="notification-badge"
                 >0</span>
-
             </button>
 
             <button
@@ -792,70 +784,36 @@ body {
 
     </section>
 
-
     <!-- STATS -->
 
     <section class="stats">
 
         <div class="stat-card">
-
-            <div class="stat-label">
-                Total Messages
-            </div>
-
+            <div class="stat-label">Total Messages</div>
             <div
                 class="stat-number"
                 id="totalMessages"
-            >
-                0
-            </div>
-
-            <div class="stat-sub">
-                All enquiries
-            </div>
-
+            >0</div>
+            <div class="stat-sub">All enquiries</div>
         </div>
 
-
         <div class="stat-card">
-
-            <div class="stat-label">
-                Unread
-            </div>
-
+            <div class="stat-label">Unread</div>
             <div
                 class="stat-number"
                 id="unreadMessages"
-            >
-                0
-            </div>
-
-            <div class="stat-sub">
-                Need your attention
-            </div>
-
+            >0</div>
+            <div class="stat-sub">Need your attention</div>
         </div>
 
-
         <div class="stat-card">
-
-            <div class="stat-label">
-                Today
-            </div>
-
+            <div class="stat-label">Today</div>
             <div
                 class="stat-number"
                 id="todayMessages"
-            >
-                0
-            </div>
-
-            <div class="stat-sub">
-                Messages received today
-            </div>
-
+            >0</div>
+            <div class="stat-sub">Messages received today</div>
         </div>
-
 
         <div class="stat-card">
 
@@ -881,7 +839,6 @@ body {
 
     </section>
 
-
     <!-- ANALYTICS -->
 
     <section class="analytics">
@@ -889,15 +846,8 @@ body {
         <div class="panel">
 
             <div class="panel-title">
-
-                <h2>
-                    Message Activity
-                </h2>
-
-                <span>
-                    Last 7 days
-                </span>
-
+                <h2>Message Activity</h2>
+                <span>Last 7 days</span>
             </div>
 
             <div
@@ -907,25 +857,16 @@ body {
 
         </div>
 
-
         <div class="panel">
 
             <div class="panel-title">
-
-                <h2>
-                    Overview
-                </h2>
-
-                <span>
-                    Live
-                </span>
-
+                <h2>Overview</h2>
+                <span>Live</span>
             </div>
 
             <div class="activity">
 
                 <div class="activity-row">
-
                     <span class="activity-name">
                         Last 7 Days
                     </span>
@@ -933,15 +874,10 @@ body {
                     <span
                         class="activity-value"
                         id="weekMessages"
-                    >
-                        0
-                    </span>
-
+                    >0</span>
                 </div>
 
-
                 <div class="activity-row">
-
                     <span class="activity-name">
                         Last 30 Days
                     </span>
@@ -949,15 +885,10 @@ body {
                     <span
                         class="activity-value"
                         id="monthMessages"
-                    >
-                        0
-                    </span>
-
+                    >0</span>
                 </div>
 
-
                 <div class="activity-row">
-
                     <span class="activity-name">
                         Read
                     </span>
@@ -965,15 +896,10 @@ body {
                     <span
                         class="activity-value"
                         id="readMessages"
-                    >
-                        0
-                    </span>
-
+                    >0</span>
                 </div>
 
-
                 <div class="activity-row">
-
                     <span class="activity-name">
                         Unread
                     </span>
@@ -981,10 +907,7 @@ body {
                     <span
                         class="activity-value"
                         id="overviewUnread"
-                    >
-                        0
-                    </span>
-
+                    >0</span>
                 </div>
 
             </div>
@@ -993,7 +916,6 @@ body {
 
     </section>
 
-
     <!-- SETTINGS -->
 
     <section class="settings-panel">
@@ -1001,15 +923,11 @@ body {
         <div class="settings-header">
 
             <div>
-
-                <h2>
-                    Website Settings
-                </h2>
+                <h2>Website Settings</h2>
 
                 <p>
                     Manage important website controls from your owner panel.
                 </p>
-
             </div>
 
             <div
@@ -1020,7 +938,6 @@ body {
             </div>
 
         </div>
-
 
         <div class="settings-grid">
 
@@ -1050,7 +967,6 @@ body {
                 </select>
 
             </div>
-
 
             <div class="setting-item">
 
@@ -1086,7 +1002,6 @@ body {
 
             </div>
 
-
             <div class="setting-item">
 
                 <div class="setting-label">
@@ -1121,7 +1036,6 @@ body {
 
             </div>
 
-
             <div class="setting-item full">
 
                 <div class="setting-label">
@@ -1142,7 +1056,6 @@ body {
 
         </div>
 
-
         <div class="settings-footer">
 
             <button
@@ -1156,7 +1069,6 @@ body {
 
     </section>
 
-
     <!-- MESSAGES -->
 
     <section class="content">
@@ -1165,9 +1077,7 @@ body {
 
             <div class="content-title">
 
-                <h2>
-                    Messages
-                </h2>
+                <h2>Messages</h2>
 
                 <span
                     class="badge"
@@ -1177,7 +1087,6 @@ body {
                 </span>
 
             </div>
-
 
             <div class="controls">
 
@@ -1213,7 +1122,6 @@ body {
 
         </div>
 
-
         <div
             id="messageList"
             class="message-list"
@@ -1226,7 +1134,6 @@ body {
         </div>
 
     </section>
-
 
     <div class="footer">
 
@@ -1245,12 +1152,10 @@ body {
 
 </main>
 
-
 <div
     id="toast"
     class="toast"
 ></div>
-
 
 <script type="module">
 
@@ -1274,9 +1179,7 @@ const supabase =
 
 
 let allMessages = [];
-
 let previousUnread = 0;
-
 let currentSettings = null;
 
 
@@ -1378,8 +1281,6 @@ async function loadSettings() {
 
 
     updateToggleText();
-
-
     updateWebsiteStatusUI();
 
 
@@ -1556,7 +1457,6 @@ async function() {
 
 
     updateToggleText();
-
     updateWebsiteStatusUI();
 
 
@@ -1607,7 +1507,7 @@ function updateToggleText() {
 }
 
 
-/* WEBSITE STATUS UI */
+/* WEBSITE STATUS */
 
 function updateWebsiteStatusUI() {
 
@@ -1686,7 +1586,7 @@ function updateWebsiteStatusUI() {
 }
 
 
-/* LIVE UI CHANGES */
+/* CHANGE EVENTS */
 
 document.getElementById(
     "websiteStatus"
@@ -1761,9 +1661,7 @@ async function() {
 
 
     updateStats();
-
     updateAnalytics();
-
     renderMessages();
 
 
@@ -2059,7 +1957,6 @@ function renderChart() {
 
 
                 return `
-
                     <div class="bar-wrap">
 
                         <div
@@ -2073,7 +1970,6 @@ function renderChart() {
                         </div>
 
                     </div>
-
                 `;
 
             }
@@ -2106,8 +2002,7 @@ function() {
     const filter =
         document.getElementById(
             "filterSelect"
-        )
-        .value;
+        ).value;
 
 
     const filtered =
@@ -2130,8 +2025,7 @@ function() {
 
 
                 if (
-                    filter ===
-                    "unread"
+                    filter === "unread"
                 ) {
 
                     filterMatch =
@@ -2141,8 +2035,7 @@ function() {
 
 
                 if (
-                    filter ===
-                    "read"
+                    filter === "read"
                 ) {
 
                     filterMatch =
@@ -2195,7 +2088,6 @@ function() {
                         {
                             dateStyle:
                                 "medium",
-
                             timeStyle:
                                 "short"
                         }
@@ -2214,7 +2106,6 @@ function() {
 
 
                 return `
-
                     <div
                         class="message-card ${
                             message.is_read
@@ -2249,13 +2140,11 @@ function() {
 
                             </div>
 
-
                             <div class="message-date">
                                 ${formatted}
                             </div>
 
                         </div>
-
 
                         <div class="message-text">
                             ${escapeHtml(
@@ -2263,35 +2152,27 @@ function() {
                             )}
                         </div>
 
-
                         <div class="message-actions">
 
                             ${
                                 message.is_read
-
                                 ? `
-
                                     <button
                                         class="action-btn"
                                         onclick="markUnread(${message.id})"
                                     >
                                         Mark Unread
                                     </button>
-
                                 `
-
                                 : `
-
                                     <button
                                         class="action-btn"
                                         onclick="markRead(${message.id})"
                                     >
                                         ✓ Mark Read
                                     </button>
-
                                 `
                             }
-
 
                             <button
                                 class="action-btn"
@@ -2303,7 +2184,6 @@ function() {
                         </div>
 
                     </div>
-
                 `;
 
             }
@@ -2318,36 +2198,16 @@ function() {
 function escapeHtml(value) {
 
     return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
 
-/* READ */
+/* MARK READ */
 
 window.markRead =
 async function(id) {
@@ -2357,8 +2217,7 @@ async function(id) {
     } = await supabase
         .from("messages")
         .update({
-            is_read:
-                true
+            is_read: true
         })
         .eq(
             "id",
@@ -2383,7 +2242,7 @@ async function(id) {
 };
 
 
-/* UNREAD */
+/* MARK UNREAD */
 
 window.markUnread =
 async function(id) {
@@ -2393,8 +2252,7 @@ async function(id) {
     } = await supabase
         .from("messages")
         .update({
-            is_read:
-                false
+            is_read: false
         })
         .eq(
             "id",
@@ -2529,11 +2387,9 @@ function showToast(message) {
 
     setTimeout(
         () => {
-
             toast.classList.remove(
                 "show"
             );
-
         },
         3000
     );
@@ -2558,9 +2414,7 @@ async function() {
 
 setInterval(
     async () => {
-
         await loadMessages();
-
     },
     30000
 );
