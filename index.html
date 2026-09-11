@@ -98,17 +98,33 @@
 
     <p>Have a project in mind? Send me a message.</p>
 
-    <form>
+    <form onsubmit="submitForm(event)">
 
-        <input type="text" placeholder="Your Name">
+    <input
+        type="text"
+        id="name"
+        placeholder="Your Name"
+        required
+    >
 
-        <input type="email" placeholder="Your Email">
+    <input
+        type="email"
+        id="email"
+        placeholder="Your Email"
+        required
+    >
 
-        <textarea placeholder="Tell me about your project"></textarea>
+    <textarea
+        id="message"
+        placeholder="Tell me about your project"
+        required
+    ></textarea>
 
-        <button type="submit">SEND MESSAGE</button>
+    <button type="submit">SEND MESSAGE</button>
 
-    </form>
+</form>
+
+<p id="form-message"></p>
 
 </section>
 
