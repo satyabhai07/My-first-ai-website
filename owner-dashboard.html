@@ -1,10 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Owner Dashboard</title>
+<title>SATYA — Owner Dashboard</title>
 
 <style>
 * {
@@ -181,6 +182,10 @@ body {
     color: var(--green);
 }
 
+.red {
+    color: var(--red);
+}
+
 .analytics {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
@@ -272,6 +277,171 @@ body {
 .activity-value {
     font-size: 17px;
     font-weight: bold;
+}
+
+/* SETTINGS */
+
+.settings-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 25px;
+}
+
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.settings-header h2 {
+    font-size: 20px;
+}
+
+.settings-header p {
+    color: #666;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.settings-status {
+    padding: 7px 11px;
+    border: 1px solid #292929;
+    border-radius: 20px;
+    color: #aaa;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.setting-item {
+    background: #080808;
+    border: 1px solid #1c1c1c;
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.setting-item.full {
+    grid-column: 1 / -1;
+}
+
+.setting-label {
+    color: #aaa;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    margin-bottom: 10px;
+}
+
+.setting-description {
+    color: #555;
+    font-size: 11px;
+    margin-bottom: 13px;
+    line-height: 1.5;
+}
+
+.setting-select,
+.setting-textarea {
+    width: 100%;
+    background: #050505;
+    border: 1px solid #292929;
+    color: #fff;
+    border-radius: 9px;
+    outline: none;
+}
+
+.setting-select {
+    padding: 12px;
+}
+
+.setting-textarea {
+    min-height: 100px;
+    padding: 13px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.setting-select:focus,
+.setting-textarea:focus {
+    border-color: #555;
+}
+
+.toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.toggle {
+    position: relative;
+    width: 48px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #252525;
+    border-radius: 30px;
+    transition: .25s;
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 3px;
+    top: 3px;
+    background: #777;
+    border-radius: 50%;
+    transition: .25s;
+}
+
+.toggle input:checked + .slider {
+    background: #fff;
+}
+
+.toggle input:checked + .slider:before {
+    transform: translateX(22px);
+    background: #000;
+}
+
+.settings-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.save-settings {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 9px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.save-settings:hover {
+    background: #ddd;
 }
 
 .content {
@@ -483,6 +653,14 @@ body {
     .analytics {
         grid-template-columns: 1fr;
     }
+
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .setting-item.full {
+        grid-column: auto;
+    }
 }
 
 @media (max-width: 650px) {
@@ -542,6 +720,19 @@ body {
         align-items: flex-start;
         gap: 15px;
     }
+
+    .settings-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .settings-footer {
+        justify-content: stretch;
+    }
+
+    .save-settings {
+        width: 100%;
+    }
 }
 </style>
 </head>
@@ -550,11 +741,17 @@ body {
 
 <nav class="navbar">
 
-    <div class="logo">PIHU</div>
+    <div class="logo">SATYA</div>
 
     <div class="nav-right">
-        <span class="live-dot"></span>
-        <span class="owner-label">OWNER PANEL</span>
+        <span
+            id="navLiveDot"
+            class="live-dot"
+        ></span>
+
+        <span class="owner-label">
+            OWNER PANEL
+        </span>
     </div>
 
 </nav>
@@ -576,10 +773,12 @@ body {
                 onclick="showNotifications()"
             >
                 🔔
+
                 <span
                     id="notificationBadge"
                     class="notification-badge"
                 >0</span>
+
             </button>
 
             <button
@@ -599,39 +798,85 @@ body {
     <section class="stats">
 
         <div class="stat-card">
-            <div class="stat-label">Total Messages</div>
+
+            <div class="stat-label">
+                Total Messages
+            </div>
+
             <div
                 class="stat-number"
                 id="totalMessages"
-            >0</div>
-            <div class="stat-sub">All enquiries</div>
+            >
+                0
+            </div>
+
+            <div class="stat-sub">
+                All enquiries
+            </div>
+
         </div>
 
 
         <div class="stat-card">
-            <div class="stat-label">Unread</div>
+
+            <div class="stat-label">
+                Unread
+            </div>
+
             <div
                 class="stat-number"
                 id="unreadMessages"
-            >0</div>
-            <div class="stat-sub">Need your attention</div>
+            >
+                0
+            </div>
+
+            <div class="stat-sub">
+                Need your attention
+            </div>
+
         </div>
 
 
         <div class="stat-card">
-            <div class="stat-label">Today</div>
+
+            <div class="stat-label">
+                Today
+            </div>
+
             <div
                 class="stat-number"
                 id="todayMessages"
-            >0</div>
-            <div class="stat-sub">Messages received today</div>
+            >
+                0
+            </div>
+
+            <div class="stat-sub">
+                Messages received today
+            </div>
+
         </div>
 
 
         <div class="stat-card">
-            <div class="stat-label">Website</div>
-            <div class="stat-number green">LIVE</div>
-            <div class="stat-sub">Operational</div>
+
+            <div class="stat-label">
+                Website
+            </div>
+
+            <div
+                class="stat-number green"
+                id="websiteStatusCard"
+            >
+                LIVE
+            </div>
+
+            <div
+                class="stat-sub"
+                id="websiteStatusSub"
+            >
+                Operational
+            </div>
+
         </div>
 
     </section>
@@ -644,8 +889,15 @@ body {
         <div class="panel">
 
             <div class="panel-title">
-                <h2>Message Activity</h2>
-                <span>Last 7 days</span>
+
+                <h2>
+                    Message Activity
+                </h2>
+
+                <span>
+                    Last 7 days
+                </span>
+
             </div>
 
             <div
@@ -659,13 +911,21 @@ body {
         <div class="panel">
 
             <div class="panel-title">
-                <h2>Overview</h2>
-                <span>Live</span>
+
+                <h2>
+                    Overview
+                </h2>
+
+                <span>
+                    Live
+                </span>
+
             </div>
 
             <div class="activity">
 
                 <div class="activity-row">
+
                     <span class="activity-name">
                         Last 7 Days
                     </span>
@@ -673,11 +933,15 @@ body {
                     <span
                         class="activity-value"
                         id="weekMessages"
-                    >0</span>
+                    >
+                        0
+                    </span>
+
                 </div>
 
 
                 <div class="activity-row">
+
                     <span class="activity-name">
                         Last 30 Days
                     </span>
@@ -685,11 +949,15 @@ body {
                     <span
                         class="activity-value"
                         id="monthMessages"
-                    >0</span>
+                    >
+                        0
+                    </span>
+
                 </div>
 
 
                 <div class="activity-row">
+
                     <span class="activity-name">
                         Read
                     </span>
@@ -697,11 +965,15 @@ body {
                     <span
                         class="activity-value"
                         id="readMessages"
-                    >0</span>
+                    >
+                        0
+                    </span>
+
                 </div>
 
 
                 <div class="activity-row">
+
                     <span class="activity-name">
                         Unread
                     </span>
@@ -709,10 +981,176 @@ body {
                     <span
                         class="activity-value"
                         id="overviewUnread"
-                    >0</span>
+                    >
+                        0
+                    </span>
+
                 </div>
 
             </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SETTINGS -->
+
+    <section class="settings-panel">
+
+        <div class="settings-header">
+
+            <div>
+
+                <h2>
+                    Website Settings
+                </h2>
+
+                <p>
+                    Manage important website controls from your owner panel.
+                </p>
+
+            </div>
+
+            <div
+                class="settings-status"
+                id="settingsStatus"
+            >
+                Loading settings...
+            </div>
+
+        </div>
+
+
+        <div class="settings-grid">
+
+            <div class="setting-item">
+
+                <div class="setting-label">
+                    Website Status
+                </div>
+
+                <div class="setting-description">
+                    Choose whether your website is operating normally or in maintenance mode.
+                </div>
+
+                <select
+                    id="websiteStatus"
+                    class="setting-select"
+                >
+
+                    <option value="LIVE">
+                        LIVE
+                    </option>
+
+                    <option value="MAINTENANCE">
+                        MAINTENANCE
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="setting-item">
+
+                <div class="setting-label">
+                    Contact Form
+                </div>
+
+                <div class="setting-description">
+                    Allow visitors to send messages through your website contact form.
+                </div>
+
+                <div class="toggle-row">
+
+                    <span
+                        id="contactFormText"
+                        style="color:#aaa;font-size:13px;"
+                    >
+                        Enabled
+                    </span>
+
+                    <label class="toggle">
+
+                        <input
+                            type="checkbox"
+                            id="contactFormEnabled"
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div class="setting-item">
+
+                <div class="setting-label">
+                    Notifications
+                </div>
+
+                <div class="setting-description">
+                    Enable or disable dashboard notification alerts.
+                </div>
+
+                <div class="toggle-row">
+
+                    <span
+                        id="notificationsText"
+                        style="color:#aaa;font-size:13px;"
+                    >
+                        Enabled
+                    </span>
+
+                    <label class="toggle">
+
+                        <input
+                            type="checkbox"
+                            id="notificationsEnabled"
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div class="setting-item full">
+
+                <div class="setting-label">
+                    Website Announcement
+                </div>
+
+                <div class="setting-description">
+                    Write an announcement that can later be displayed on your public website.
+                </div>
+
+                <textarea
+                    id="announcement"
+                    class="setting-textarea"
+                    placeholder="Example: New updates coming soon..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-footer">
+
+            <button
+                class="save-settings"
+                onclick="saveSettings()"
+            >
+                SAVE SETTINGS
+            </button>
 
         </div>
 
@@ -727,7 +1165,9 @@ body {
 
             <div class="content-title">
 
-                <h2>Messages</h2>
+                <h2>
+                    Messages
+                </h2>
 
                 <span
                     class="badge"
@@ -754,9 +1194,19 @@ body {
                     class="filter"
                     onchange="renderMessages()"
                 >
-                    <option value="all">All</option>
-                    <option value="unread">Unread</option>
-                    <option value="read">Read</option>
+
+                    <option value="all">
+                        All
+                    </option>
+
+                    <option value="unread">
+                        Unread
+                    </option>
+
+                    <option value="read">
+                        Read
+                    </option>
+
                 </select>
 
             </div>
@@ -768,9 +1218,11 @@ body {
             id="messageList"
             class="message-list"
         >
+
             <div class="loading">
                 Loading messages...
             </div>
+
         </div>
 
     </section>
@@ -825,6 +1277,8 @@ let allMessages = [];
 
 let previousUnread = 0;
 
+let currentSettings = null;
+
 
 /* OWNER CHECK */
 
@@ -839,6 +1293,7 @@ async function checkOwner() {
         error ||
         !data.session
     ) {
+
         window.location.href =
             "owner-login.html";
 
@@ -849,14 +1304,424 @@ async function checkOwner() {
 }
 
 
-/* LOAD */
+/* LOAD SETTINGS */
 
-window.loadMessages = async function() {
+async function loadSettings() {
+
+    const {
+        data,
+        error
+    } = await supabase
+        .from("site_settings")
+        .select("*")
+        .limit(1)
+        .maybeSingle();
+
+
+    if (error) {
+
+        console.error(
+            "Settings error:",
+            error
+        );
+
+        document.getElementById(
+            "settingsStatus"
+        ).textContent =
+            "Unable to load";
+
+        showToast(
+            "Settings could not be loaded"
+        );
+
+        return;
+    }
+
+
+    if (!data) {
+
+        document.getElementById(
+            "settingsStatus"
+        ).textContent =
+            "No settings";
+
+        return;
+    }
+
+
+    currentSettings =
+        data;
+
+
+    document.getElementById(
+        "websiteStatus"
+    ).value =
+        data.website_status || "LIVE";
+
+
+    document.getElementById(
+        "announcement"
+    ).value =
+        data.announcement || "";
+
+
+    document.getElementById(
+        "contactFormEnabled"
+    ).checked =
+        data.contact_form_enabled !== false;
+
+
+    document.getElementById(
+        "notificationsEnabled"
+    ).checked =
+        data.notifications_enabled !== false;
+
+
+    updateToggleText();
+
+
+    updateWebsiteStatusUI();
+
+
+    document.getElementById(
+        "settingsStatus"
+    ).textContent =
+        "Settings loaded";
+
+}
+
+
+/* SAVE SETTINGS */
+
+window.saveSettings =
+async function() {
+
+    const button =
+        document.querySelector(
+            ".save-settings"
+        );
+
+
+    const websiteStatus =
+        document.getElementById(
+            "websiteStatus"
+        ).value;
+
+
+    const announcement =
+        document.getElementById(
+            "announcement"
+        ).value
+        .trim();
+
+
+    const contactFormEnabled =
+        document.getElementById(
+            "contactFormEnabled"
+        ).checked;
+
+
+    const notificationsEnabled =
+        document.getElementById(
+            "notificationsEnabled"
+        ).checked;
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "SAVING...";
+
+
+    const {
+        data: existing,
+        error: findError
+    } = await supabase
+        .from("site_settings")
+        .select("id")
+        .limit(1)
+        .maybeSingle();
+
+
+    if (findError) {
+
+        console.error(
+            findError
+        );
+
+        button.disabled = false;
+
+        button.textContent =
+            "SAVE SETTINGS";
+
+        showToast(
+            "Could not load settings"
+        );
+
+        return;
+    }
+
+
+    let error;
+
+
+    if (existing) {
+
+        const result =
+            await supabase
+                .from("site_settings")
+                .update({
+                    website_status:
+                        websiteStatus,
+
+                    announcement:
+                        announcement,
+
+                    contact_form_enabled:
+                        contactFormEnabled,
+
+                    notifications_enabled:
+                        notificationsEnabled,
+
+                    updated_at:
+                        new Date().toISOString()
+                })
+                .eq(
+                    "id",
+                    existing.id
+                );
+
+        error =
+            result.error;
+
+    } else {
+
+        const result =
+            await supabase
+                .from("site_settings")
+                .insert({
+                    website_status:
+                        websiteStatus,
+
+                    announcement:
+                        announcement,
+
+                    contact_form_enabled:
+                        contactFormEnabled,
+
+                    notifications_enabled:
+                        notificationsEnabled
+                });
+
+        error =
+            result.error;
+
+    }
+
+
+    button.disabled = false;
+
+    button.textContent =
+        "SAVE SETTINGS";
+
+
+    if (error) {
+
+        console.error(
+            "Save settings error:",
+            error
+        );
+
+        showToast(
+            "Settings could not be saved"
+        );
+
+        return;
+    }
+
+
+    currentSettings = {
+        website_status:
+            websiteStatus,
+
+        announcement:
+            announcement,
+
+        contact_form_enabled:
+            contactFormEnabled,
+
+        notifications_enabled:
+            notificationsEnabled
+    };
+
+
+    updateToggleText();
+
+    updateWebsiteStatusUI();
+
+
+    document.getElementById(
+        "settingsStatus"
+    ).textContent =
+        "Saved just now";
+
+
+    showToast(
+        "✓ Settings saved successfully"
+    );
+
+};
+
+
+/* TOGGLE TEXT */
+
+function updateToggleText() {
+
+    const contact =
+        document.getElementById(
+            "contactFormEnabled"
+        );
+
+
+    const notifications =
+        document.getElementById(
+            "notificationsEnabled"
+        );
+
+
+    document.getElementById(
+        "contactFormText"
+    ).textContent =
+        contact.checked
+        ? "Enabled"
+        : "Disabled";
+
+
+    document.getElementById(
+        "notificationsText"
+    ).textContent =
+        notifications.checked
+        ? "Enabled"
+        : "Disabled";
+
+}
+
+
+/* WEBSITE STATUS UI */
+
+function updateWebsiteStatusUI() {
+
+    const status =
+        document.getElementById(
+            "websiteStatus"
+        ).value;
+
+
+    const card =
+        document.getElementById(
+            "websiteStatusCard"
+        );
+
+
+    const sub =
+        document.getElementById(
+            "websiteStatusSub"
+        );
+
+
+    const dot =
+        document.getElementById(
+            "navLiveDot"
+        );
+
+
+    if (
+        status === "MAINTENANCE"
+    ) {
+
+        card.textContent =
+            "MAINT.";
+
+        card.classList.remove(
+            "green"
+        );
+
+        card.classList.add(
+            "red"
+        );
+
+        sub.textContent =
+            "Maintenance mode";
+
+        dot.style.background =
+            "var(--red)";
+
+        dot.style.boxShadow =
+            "0 0 12px rgba(255,118,117,.5)";
+
+    } else {
+
+        card.textContent =
+            "LIVE";
+
+        card.classList.remove(
+            "red"
+        );
+
+        card.classList.add(
+            "green"
+        );
+
+        sub.textContent =
+            "Operational";
+
+        dot.style.background =
+            "var(--green)";
+
+        dot.style.boxShadow =
+            "0 0 12px rgba(120,224,143,.5)";
+
+    }
+
+}
+
+
+/* LIVE UI CHANGES */
+
+document.getElementById(
+    "websiteStatus"
+).addEventListener(
+    "change",
+    updateWebsiteStatusUI
+);
+
+
+document.getElementById(
+    "contactFormEnabled"
+).addEventListener(
+    "change",
+    updateToggleText
+);
+
+
+document.getElementById(
+    "notificationsEnabled"
+).addEventListener(
+    "change",
+    updateToggleText
+);
+
+
+/* LOAD MESSAGES */
+
+window.loadMessages =
+async function() {
 
     const list =
         document.getElementById(
             "messageList"
         );
+
 
     list.innerHTML =
         `<div class="loading">
@@ -891,7 +1756,8 @@ window.loadMessages = async function() {
     }
 
 
-    allMessages = data || [];
+    allMessages =
+        data || [];
 
 
     updateStats();
@@ -908,17 +1774,27 @@ window.loadMessages = async function() {
         ).length;
 
 
+    const notificationsEnabled =
+        currentSettings
+        ? currentSettings.notifications_enabled !== false
+        : true;
+
+
     if (
+        notificationsEnabled &&
         unread > previousUnread &&
         previousUnread !== 0
     ) {
+
         showToast(
             "🔔 New message received"
         );
+
     }
 
 
-    previousUnread = unread;
+    previousUnread =
+        unread;
 
 };
 
@@ -939,6 +1815,7 @@ function updateStats() {
                     new Date(
                         message.created_at
                     );
+
 
                 return (
                     date.toDateString() ===
@@ -983,7 +1860,8 @@ function updateStats() {
     document.getElementById(
         "readMessages"
     ).textContent =
-        allMessages.length - unread;
+        allMessages.length -
+        unread;
 
 
     const badge =
@@ -1028,7 +1906,11 @@ function updateAnalytics() {
                     message.created_at
                 )
                 <=
-                7 * 24 * 60 * 60 * 1000
+                7 *
+                24 *
+                60 *
+                60 *
+                1000
         ).length;
 
 
@@ -1040,7 +1922,11 @@ function updateAnalytics() {
                     message.created_at
                 )
                 <=
-                30 * 24 * 60 * 60 * 1000
+                30 *
+                24 *
+                60 *
+                60 *
+                1000
         ).length;
 
 
@@ -1087,9 +1973,14 @@ function renderChart() {
         const date =
             new Date(now);
 
+
         date.setHours(
-            0,0,0,0
+            0,
+            0,
+            0,
+            0
         );
+
 
         date.setDate(
             date.getDate() - i
@@ -1098,6 +1989,7 @@ function renderChart() {
 
         const next =
             new Date(date);
+
 
         next.setDate(
             next.getDate() + 1
@@ -1112,6 +2004,7 @@ function renderChart() {
                         new Date(
                             message.created_at
                         );
+
 
                     return (
                         created >= date &&
@@ -1150,7 +2043,8 @@ function renderChart() {
                         (
                             day.count /
                             max
-                        ) * 115
+                        ) *
+                        115
                     );
 
 
@@ -1158,7 +2052,8 @@ function renderChart() {
                     day.date.toLocaleDateString(
                         undefined,
                         {
-                            weekday: "short"
+                            weekday:
+                                "short"
                         }
                     );
 
@@ -1238,8 +2133,10 @@ function() {
                     filter ===
                     "unread"
                 ) {
+
                     filterMatch =
                         !message.is_read;
+
                 }
 
 
@@ -1247,8 +2144,10 @@ function() {
                     filter ===
                     "read"
                 ) {
+
                     filterMatch =
                         message.is_read;
+
                 }
 
 
@@ -1296,6 +2195,7 @@ function() {
                         {
                             dateStyle:
                                 "medium",
+
                             timeStyle:
                                 "short"
                         }
@@ -1370,21 +2270,25 @@ function() {
                                 message.is_read
 
                                 ? `
+
                                     <button
                                         class="action-btn"
                                         onclick="markUnread(${message.id})"
                                     >
                                         Mark Unread
                                     </button>
+
                                 `
 
                                 : `
+
                                     <button
                                         class="action-btn"
                                         onclick="markRead(${message.id})"
                                     >
                                         ✓ Mark Read
                                     </button>
+
                                 `
                             }
 
@@ -1403,7 +2307,8 @@ function() {
                 `;
 
             }
-        ).join("");
+        )
+        .join("");
 
 };
 
@@ -1452,7 +2357,8 @@ async function(id) {
     } = await supabase
         .from("messages")
         .update({
-            is_read: true
+            is_read:
+                true
         })
         .eq(
             "id",
@@ -1487,7 +2393,8 @@ async function(id) {
     } = await supabase
         .from("messages")
         .update({
-            is_read: false
+            is_read:
+                false
         })
         .eq(
             "id",
@@ -1560,6 +2467,22 @@ async function(id) {
 
 window.showNotifications =
 function() {
+
+    const notificationsEnabled =
+        currentSettings
+        ? currentSettings.notifications_enabled !== false
+        : true;
+
+
+    if (!notificationsEnabled) {
+
+        showToast(
+            "Notifications are disabled"
+        );
+
+        return;
+    }
+
 
     const unread =
         allMessages.filter(
@@ -1656,6 +2579,8 @@ async function startDashboard() {
     }
 
 
+    await loadSettings();
+
     await loadMessages();
 
 }
@@ -1667,3 +2592,4 @@ startDashboard();
 
 </body>
 </html>
+```
