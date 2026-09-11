@@ -980,48 +980,7 @@ body {
 
             <div>
                 <h2>Website Settings</h2>
-                <!-- OWNER PROFILE -->
-
-<div class="section-card">
-
-    <div class="section-title">
-        <div>
-            <h2>Owner Profile</h2>
-            <p>Manage your owner account information.</p>
-        </div>
-    </div>
-
-    <div class="profile-grid">
-
-        <div class="profile-item">
-            <label>Owner Name</label>
-            <input
-                type="text"
-                id="ownerName"
-                placeholder="Owner name"
-            >
-        </div>
-
-        <div class="profile-item">
-            <label>Email</label>
-            <input
-                type="email"
-                id="ownerEmail"
-                disabled
-            >
-        </div>
-
-    </div>
-
-    <button
-        class="save-btn"
-        id="saveProfileBtn"
-        onclick="saveOwnerProfile()"
-    >
-        Save Profile
-    </button>
-
-</div>
+  
                 <p>
                     Manage important website controls from your owner panel.
                 </p>
@@ -1165,6 +1124,49 @@ body {
         </div>
 
     </section>
+
+    <! --OWNER PROFILE-->
+    
+<div class="section-card">
+
+    <div class="section-title">
+        <div>
+            <h2>Owner Profile</h2>
+            <p>Manage your owner account information.</p>
+        </div>
+    </div>
+
+    <div class="profile-grid">
+
+        <div class="profile-item">
+            <label>Owner Name</label>
+            <input
+                type="text"
+                id="ownerName"
+                placeholder="Owner name"
+            >
+        </div>
+
+        <div class="profile-item">
+            <label>Email</label>
+            <input
+                type="email"
+                id="ownerEmail"
+                disabled
+            >
+        </div>
+
+    </div>
+
+    <button
+        class="save-btn"
+        id="saveProfileBtn"
+        onclick="saveOwnerProfile()"
+    >
+        Save Profile
+    </button>
+
+</div>
 
     <!-- MESSAGES -->
 
@@ -2614,6 +2616,7 @@ async function startDashboard() {
 
 
     await loadSettings();
+    await loadOwnerProfile();
     await requestNotificationPermission();
     await loadMessages();
 
