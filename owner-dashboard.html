@@ -30,6 +30,8 @@ body {
     min-height: 100vh;
 }
 
+/* NAVBAR */
+
 .navbar {
     height: 74px;
     border-bottom: 1px solid var(--border);
@@ -70,11 +72,15 @@ body {
     letter-spacing: 1.5px;
 }
 
+/* CONTAINER */
+
 .container {
     width: 90%;
     max-width: 1250px;
     margin: 50px auto;
 }
+
+/* HEADER */
 
 .header {
     display: flex;
@@ -137,6 +143,8 @@ body {
     justify-content: center;
 }
 
+/* STATS */
+
 .stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -184,6 +192,8 @@ body {
     color: var(--red);
 }
 
+/* ANALYTICS */
+
 .analytics {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
@@ -193,7 +203,8 @@ body {
 
 .panel,
 .settings-panel,
-.content {
+.content,
+.section-card {
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 18px;
@@ -443,6 +454,87 @@ body {
     background: #ddd;
 }
 
+/* OWNER PROFILE */
+
+.section-card {
+    padding: 24px;
+    margin-bottom: 25px;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.section-title h2 {
+    font-size: 20px;
+}
+
+.section-title p {
+    color: #666;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.profile-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.profile-item label {
+    font-size: 13px;
+    color: #aaa;
+}
+
+.profile-item input {
+    width: 100%;
+    padding: 12px 14px;
+    background: #111;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 8px;
+    outline: none;
+}
+
+.profile-item input:focus {
+    border-color: #fff;
+}
+
+.profile-item input:disabled {
+    color: #777;
+    cursor: not-allowed;
+}
+
+.save-btn {
+    margin-top: 20px;
+    padding: 12px 22px;
+    background: #fff;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    opacity: 0.85;
+}
+
+.save-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 /* MESSAGES */
 
 .content {
@@ -600,6 +692,8 @@ body {
     color: #555;
 }
 
+/* FOOTER */
+
 .footer {
     display: flex;
     justify-content: space-between;
@@ -622,6 +716,8 @@ body {
     cursor: pointer;
 }
 
+/* TOAST */
+
 .toast {
     position: fixed;
     right: 25px;
@@ -643,7 +739,10 @@ body {
     opacity: 1;
 }
 
+/* RESPONSIVE */
+
 @media (max-width: 900px) {
+
     .stats {
         grid-template-columns: repeat(2,1fr);
     }
@@ -661,7 +760,16 @@ body {
     }
 }
 
+@media (max-width: 700px) {
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
 @media (max-width: 650px) {
+
     .container {
         width: 92%;
         margin: 35px auto;
@@ -722,67 +830,18 @@ body {
         width: 100%;
     }
 
+    .section-card {
+        padding: 20px;
+    }
+
+    .save-btn {
+        width: 100%;
+    }
+
     .footer {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
-    }
-}
-    .profile-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.profile-item {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.profile-item label {
-    font-size: 13px;
-    color: #aaa;
-}
-
-.profile-item input {
-    width: 100%;
-    padding: 12px 14px;
-    background: #111;
-    color: #fff;
-    border: 1px solid #333;
-    border-radius: 8px;
-    outline: none;
-}
-
-.profile-item input:focus {
-    border-color: #fff;
-}
-
-.profile-item input:disabled {
-    color: #777;
-    cursor: not-allowed;
-}
-
-.save-btn {
-    margin-top: 20px;
-    padding: 12px 22px;
-    background: #fff;
-    color: #000;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.save-btn:hover {
-    opacity: 0.85;
-}
-
-@media (max-width: 700px) {
-    .profile-grid {
-        grid-template-columns: 1fr;
     }
 }
 </style>
@@ -795,6 +854,7 @@ body {
     <div class="logo">SATYA</div>
 
     <div class="nav-right">
+
         <span
             id="navLiveDot"
             class="live-dot"
@@ -803,17 +863,25 @@ body {
         <span class="owner-label">
             OWNER PANEL
         </span>
+
     </div>
 
 </nav>
 
 <main class="container">
 
+    <!-- HEADER -->
+
     <section class="header">
 
         <div>
+
             <h1>Dashboard</h1>
-            <p>Control center for your website.</p>
+
+            <p>
+                Control center for your website.
+            </p>
+
         </div>
 
         <div class="header-actions">
@@ -823,10 +891,14 @@ body {
                 onclick="showNotifications()"
             >
                 🔔
+
                 <span
                     id="notificationBadge"
                     class="notification-badge"
-                >0</span>
+                >
+                    0
+                </span>
+
             </button>
 
             <button
@@ -840,36 +912,70 @@ body {
 
     </section>
 
+
     <!-- STATS -->
 
     <section class="stats">
 
         <div class="stat-card">
-            <div class="stat-label">Total Messages</div>
+
+            <div class="stat-label">
+                Total Messages
+            </div>
+
             <div
                 class="stat-number"
                 id="totalMessages"
-            >0</div>
-            <div class="stat-sub">All enquiries</div>
+            >
+                0
+            </div>
+
+            <div class="stat-sub">
+                All enquiries
+            </div>
+
         </div>
 
+
         <div class="stat-card">
-            <div class="stat-label">Unread</div>
+
+            <div class="stat-label">
+                Unread
+            </div>
+
             <div
                 class="stat-number"
                 id="unreadMessages"
-            >0</div>
-            <div class="stat-sub">Need your attention</div>
+            >
+                0
+            </div>
+
+            <div class="stat-sub">
+                Need your attention
+            </div>
+
         </div>
 
+
         <div class="stat-card">
-            <div class="stat-label">Today</div>
+
+            <div class="stat-label">
+                Today
+            </div>
+
             <div
                 class="stat-number"
                 id="todayMessages"
-            >0</div>
-            <div class="stat-sub">Messages received today</div>
+            >
+                0
+            </div>
+
+            <div class="stat-sub">
+                Messages received today
+            </div>
+
         </div>
+
 
         <div class="stat-card">
 
@@ -895,6 +1001,7 @@ body {
 
     </section>
 
+
     <!-- ANALYTICS -->
 
     <section class="analytics">
@@ -902,8 +1009,15 @@ body {
         <div class="panel">
 
             <div class="panel-title">
-                <h2>Message Activity</h2>
-                <span>Last 7 days</span>
+
+                <h2>
+                    Message Activity
+                </h2>
+
+                <span>
+                    Last 7 days
+                </span>
+
             </div>
 
             <div
@@ -913,16 +1027,25 @@ body {
 
         </div>
 
+
         <div class="panel">
 
             <div class="panel-title">
-                <h2>Overview</h2>
-                <span>Live</span>
+
+                <h2>
+                    Overview
+                </h2>
+
+                <span>
+                    Live
+                </span>
+
             </div>
 
             <div class="activity">
 
                 <div class="activity-row">
+
                     <span class="activity-name">
                         Last 7 Days
                     </span>
@@ -930,10 +1053,15 @@ body {
                     <span
                         class="activity-value"
                         id="weekMessages"
-                    >0</span>
+                    >
+                        0
+                    </span>
+
                 </div>
 
+
                 <div class="activity-row">
+
                     <span class="activity-name">
                         Last 30 Days
                     </span>
@@ -941,10 +1069,15 @@ body {
                     <span
                         class="activity-value"
                         id="monthMessages"
-                    >0</span>
+                    >
+                        0
+                    </span>
+
                 </div>
 
+
                 <div class="activity-row">
+
                     <span class="activity-name">
                         Read
                     </span>
@@ -952,10 +1085,15 @@ body {
                     <span
                         class="activity-value"
                         id="readMessages"
-                    >0</span>
+                    >
+                        0
+                    </span>
+
                 </div>
 
+
                 <div class="activity-row">
+
                     <span class="activity-name">
                         Unread
                     </span>
@@ -963,7 +1101,10 @@ body {
                     <span
                         class="activity-value"
                         id="overviewUnread"
-                    >0</span>
+                    >
+                        0
+                    </span>
+
                 </div>
 
             </div>
@@ -972,6 +1113,7 @@ body {
 
     </section>
 
+
     <!-- SETTINGS -->
 
     <section class="settings-panel">
@@ -979,11 +1121,15 @@ body {
         <div class="settings-header">
 
             <div>
-                <h2>Website Settings</h2>
-  
+
+                <h2>
+                    Website Settings
+                </h2>
+
                 <p>
                     Manage important website controls from your owner panel.
                 </p>
+
             </div>
 
             <div
@@ -994,6 +1140,7 @@ body {
             </div>
 
         </div>
+
 
         <div class="settings-grid">
 
@@ -1023,6 +1170,7 @@ body {
                 </select>
 
             </div>
+
 
             <div class="setting-item">
 
@@ -1058,6 +1206,7 @@ body {
 
             </div>
 
+
             <div class="setting-item">
 
                 <div class="setting-label">
@@ -1092,6 +1241,7 @@ body {
 
             </div>
 
+
             <div class="setting-item full">
 
                 <div class="setting-label">
@@ -1112,6 +1262,7 @@ body {
 
         </div>
 
+
         <div class="settings-footer">
 
             <button
@@ -1125,48 +1276,72 @@ body {
 
     </section>
 
-    <! --OWNER PROFILE-->
-    
-<div class="section-card">
 
-    <div class="section-title">
-        <div>
-            <h2>Owner Profile</h2>
-            <p>Manage your owner account information.</p>
-        </div>
-    </div>
+    <!-- OWNER PROFILE -->
 
-    <div class="profile-grid">
+    <section class="section-card">
 
-        <div class="profile-item">
-            <label>Owner Name</label>
-            <input
-                type="text"
-                id="ownerName"
-                placeholder="Owner name"
-            >
-        </div>
+        <div class="section-title">
 
-        <div class="profile-item">
-            <label>Email</label>
-            <input
-                type="email"
-                id="ownerEmail"
-                disabled
-            >
+            <div>
+
+                <h2>
+                    Owner Profile
+                </h2>
+
+                <p>
+                    Manage your owner account information.
+                </p>
+
+            </div>
+
         </div>
 
-    </div>
 
-    <button
-        class="save-btn"
-        id="saveProfileBtn"
-        onclick="saveOwnerProfile()"
-    >
-        Save Profile
-    </button>
+        <div class="profile-grid">
 
-</div>
+            <div class="profile-item">
+
+                <label>
+                    Owner Name
+                </label>
+
+                <input
+                    type="text"
+                    id="ownerName"
+                    placeholder="Owner name"
+                >
+
+            </div>
+
+
+            <div class="profile-item">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="ownerEmail"
+                    disabled
+                >
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="save-btn"
+            id="saveProfileBtn"
+            onclick="saveOwnerProfile()"
+        >
+            Save Profile
+        </button>
+
+    </section>
+
 
     <!-- MESSAGES -->
 
@@ -1176,7 +1351,9 @@ body {
 
             <div class="content-title">
 
-                <h2>Messages</h2>
+                <h2>
+                    Messages
+                </h2>
 
                 <span
                     class="badge"
@@ -1187,6 +1364,7 @@ body {
 
             </div>
 
+
             <div class="controls">
 
                 <input
@@ -1196,6 +1374,7 @@ body {
                     placeholder="Search messages..."
                     oninput="renderMessages()"
                 >
+
 
                 <select
                     id="filterSelect"
@@ -1221,6 +1400,7 @@ body {
 
         </div>
 
+
         <div
             id="messageList"
             class="message-list"
@@ -1233,6 +1413,9 @@ body {
         </div>
 
     </section>
+
+
+    <!-- FOOTER -->
 
     <div class="footer">
 
@@ -1251,10 +1434,12 @@ body {
 
 </main>
 
+
 <div
     id="toast"
     class="toast"
 ></div>
+
 
 <script type="module">
 
@@ -1265,6 +1450,7 @@ import {
 
 const SUPABASE_URL =
     "https://sctyvhjmmtxjcpdecwfe.supabase.co";
+
 
 const SUPABASE_KEY =
     "sb_publishable_qsyg3Kk-XeSl7TSXKSZchg_0GJuoksR";
@@ -1291,6 +1477,7 @@ async function checkOwner() {
         error
     } = await supabase.auth.getSession();
 
+
     if (
         error ||
         !data.session
@@ -1300,9 +1487,12 @@ async function checkOwner() {
             "owner-login.html";
 
         return false;
+
     }
 
+
     return true;
+
 }
 
 
@@ -1337,6 +1527,7 @@ async function loadSettings() {
         );
 
         return;
+
     }
 
 
@@ -1348,6 +1539,7 @@ async function loadSettings() {
             "No settings";
 
         return;
+
     }
 
 
@@ -1389,6 +1581,10 @@ async function loadSettings() {
         "Settings loaded";
 
 }
+
+
+/* LOAD OWNER PROFILE */
+
 async function loadOwnerProfile() {
 
     const {
@@ -1398,27 +1594,144 @@ async function loadOwnerProfile() {
         error
     } = await supabase.auth.getUser();
 
-    if (error || !user) {
-        console.error("Owner profile error:", error);
+
+    if (
+        error ||
+        !user
+    ) {
+
+        console.error(
+            "Owner profile error:",
+            error
+        );
+
         return;
+
     }
+
 
     const emailInput =
-        document.getElementById("ownerEmail");
+        document.getElementById(
+            "ownerEmail"
+        );
+
 
     const nameInput =
-        document.getElementById("ownerName");
+        document.getElementById(
+            "ownerName"
+        );
+
 
     if (emailInput) {
+
         emailInput.value =
             user.email || "";
+
     }
 
+
     if (nameInput) {
+
         nameInput.value =
             user.user_metadata?.name || "";
+
     }
+
 }
+
+
+/* SAVE OWNER PROFILE */
+
+window.saveOwnerProfile =
+async function() {
+
+    const button =
+        document.getElementById(
+            "saveProfileBtn"
+        );
+
+
+    const nameInput =
+        document.getElementById(
+            "ownerName"
+        );
+
+
+    const name =
+        nameInput
+        ? nameInput.value.trim()
+        : "";
+
+
+    if (!name) {
+
+        showToast(
+            "Please enter owner name"
+        );
+
+        return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "SAVING...";
+
+
+    const {
+        data,
+        error
+    } = await supabase.auth.updateUser({
+
+        data: {
+            name: name
+        }
+
+    });
+
+
+    button.disabled = false;
+
+    button.textContent =
+        "Save Profile";
+
+
+    if (error) {
+
+        console.error(
+            "Profile save error:",
+            error
+        );
+
+        showToast(
+            "Profile could not be saved"
+        );
+
+        return;
+
+    }
+
+
+    if (data && data.user) {
+
+        if (nameInput) {
+
+            nameInput.value =
+                data.user.user_metadata?.name || name;
+
+        }
+
+    }
+
+
+    showToast(
+        "✓ Profile saved successfully"
+    );
+
+};
+
 
 /* SAVE SETTINGS */
 
@@ -1488,6 +1801,7 @@ async function() {
         );
 
         return;
+
     }
 
 
@@ -1500,6 +1814,7 @@ async function() {
             await supabase
                 .from("site_settings")
                 .update({
+
                     website_status:
                         websiteStatus,
 
@@ -1514,11 +1829,13 @@ async function() {
 
                     updated_at:
                         new Date().toISOString()
+
                 })
                 .eq(
                     "id",
                     existing.id
                 );
+
 
         error =
             result.error;
@@ -1529,6 +1846,7 @@ async function() {
             await supabase
                 .from("site_settings")
                 .insert({
+
                     website_status:
                         websiteStatus,
 
@@ -1540,7 +1858,9 @@ async function() {
 
                     notifications_enabled:
                         notificationsEnabled
+
                 });
+
 
         error =
             result.error;
@@ -1566,10 +1886,12 @@ async function() {
         );
 
         return;
+
     }
 
 
     currentSettings = {
+
         website_status:
             websiteStatus,
 
@@ -1581,6 +1903,7 @@ async function() {
 
         notifications_enabled:
             notificationsEnabled
+
     };
 
 
@@ -1681,8 +2004,10 @@ function updateWebsiteStatusUI() {
         sub.textContent =
             "Maintenance mode";
 
+
         dot.style.background =
             "var(--red)";
+
 
         dot.style.boxShadow =
             "0 0 12px rgba(255,118,117,.5)";
@@ -1703,8 +2028,10 @@ function updateWebsiteStatusUI() {
         sub.textContent =
             "Operational";
 
+
         dot.style.background =
             "var(--green)";
+
 
         dot.style.boxShadow =
             "0 0 12px rgba(120,224,143,.5)";
@@ -1781,6 +2108,7 @@ async function() {
             </div>`;
 
         return;
+
     }
 
 
@@ -1902,6 +2230,7 @@ function updateStats() {
             unread > 99
             ? "99+"
             : unread;
+
 
         badge.style.display =
             "flex";
@@ -2197,6 +2526,7 @@ function() {
             </div>`;
 
         return;
+
     }
 
 
@@ -2274,11 +2604,13 @@ function() {
 
                         </div>
 
+
                         <div class="message-text">
                             ${escapeHtml(
                                 message.message
                             )}
                         </div>
+
 
                         <div class="message-actions">
 
@@ -2301,6 +2633,7 @@ function() {
                                     </button>
                                 `
                             }
+
 
                             <button
                                 class="action-btn"
@@ -2326,11 +2659,26 @@ function() {
 function escapeHtml(value) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
@@ -2362,6 +2710,7 @@ async function(id) {
         console.error(error);
 
         return;
+
     }
 
 
@@ -2397,6 +2746,7 @@ async function(id) {
         console.error(error);
 
         return;
+
     }
 
 
@@ -2417,7 +2767,9 @@ async function(id) {
 
 
     if (!confirmDelete) {
+
         return;
+
     }
 
 
@@ -2441,6 +2793,7 @@ async function(id) {
         console.error(error);
 
         return;
+
     }
 
 
@@ -2467,6 +2820,7 @@ function() {
         );
 
         return;
+
     }
 
 
@@ -2484,6 +2838,7 @@ function() {
         );
 
         return;
+
     }
 
 
@@ -2515,9 +2870,11 @@ function showToast(message) {
 
     setTimeout(
         () => {
+
             toast.classList.remove(
                 "show"
             );
+
         },
         3000
     );
@@ -2532,6 +2889,7 @@ async function() {
 
     await supabase.auth.signOut();
 
+
     window.location.href =
         "owner-login.html";
 
@@ -2542,10 +2900,14 @@ async function() {
 
 setInterval(
     async () => {
+
         await loadMessages();
+
     },
     30000
 );
+
+
 /* REALTIME NEW MESSAGE NOTIFICATIONS */
 
 supabase
@@ -2564,20 +2926,27 @@ supabase
                 ? currentSettings.notifications_enabled !== false
                 : true;
 
+
             if (!notificationsEnabled) {
+
                 return;
+
             }
 
+
             await loadMessages();
+
 
             showToast(
                 "🔔 New message received"
             );
 
+
             if (
                 "Notification" in window &&
                 Notification.permission === "granted"
             ) {
+
                 new Notification(
                     "New message received",
                     {
@@ -2585,23 +2954,38 @@ supabase
                             `${payload.new.name || "Someone"} sent you a new message.`
                     }
                 );
+
             }
+
         }
     )
     .subscribe();
+
+
 /* BROWSER NOTIFICATION PERMISSION */
 
 async function requestNotificationPermission() {
 
-    if (!("Notification" in window)) {
+    if (
+        !("Notification" in window)
+    ) {
+
         return;
+
     }
 
-    if (Notification.permission === "default") {
+
+    if (
+        Notification.permission === "default"
+    ) {
+
         await Notification.requestPermission();
+
     }
 
 }
+
+
 /* START */
 
 async function startDashboard() {
@@ -2611,13 +2995,18 @@ async function startDashboard() {
 
 
     if (!owner) {
+
         return;
+
     }
 
 
     await loadSettings();
+
     await loadOwnerProfile();
+
     await requestNotificationPermission();
+
     await loadMessages();
 
 }
@@ -2628,5 +3017,4 @@ startDashboard();
 </script>
 
 </body>
-</html>
-
+    </html>
