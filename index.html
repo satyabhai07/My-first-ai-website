@@ -915,20 +915,7 @@ document.querySelectorAll(".nav-menu a").forEach(link => {
 });
 
 
-function submitForm(event) {
 
-    event.preventDefault();
-
-    const name = document.getElementById("name").value;
-
-    document.getElementById("form-message").innerText =
-        "Thank you, " + name + "! Your message has been received.";
-
-    document.getElementById("form-message").classList.add("success");
-
-    document.querySelector(".contact-form").reset();
-
-}
 
 
 const revealElements = document.querySelectorAll(".reveal");
