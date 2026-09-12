@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SATYA — User Access</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{min-height:100vh;background:#050505;color:#fff;font-family:Arial,Helvetica,sans-serif;display:flex;align-items:center;justify-content:center;padding:20px}.wrap{width:100%;max-width:440px}.brand{font-size:20px;font-weight:800;letter-spacing:4px;margin-bottom:24px}.card{background:#0b0b0b;border:1px solid #202020;border-radius:18px;padding:30px}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:26px}.tab{padding:11px;border:1px solid #292929;background:#101010;color:#888;border-radius:9px;cursor:pointer;font-weight:700}.tab.active{background:#fff;color:#000}.panel{display:none}.panel.active{display:block}h1{font-size:28px;margin-bottom:8px}.sub{color:#777;font-size:13px;line-height:1.5;margin-bottom:24px}.field{margin-bottom:14px}label{display:block;color:#aaa;font-size:12px;margin-bottom:8px}input{width:100%;padding:14px;background:#070707;border:1px solid #292929;border-radius:9px;color:#fff;outline:none}input:focus{border-color:#666}.primary{width:100%;padding:14px;border:0;border-radius:9px;background:#fff;color:#000;font-weight:800;cursor:pointer;margin-top:4px}.primary:disabled{opacity:.55;cursor:not-allowed}.message{min-height:20px;text-align:center;margin-top:16px;font-size:12px;color:#ff7675}.message.ok{color:#78e08f}.back{display:block;text-align:center;margin-top:20px;color:#777;text-decoration:none;font-size:12px}.back:hover{color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="brand">SATYA</div>
+<div class="card">
+<div class="tabs"><button class="tab active" id="loginTab" type="button">LOGIN</button><button class="tab" id="signupTab" type="button">SIGN UP</button></div>
+<section class="panel active" id="loginPanel">
+<h1>Welcome back</h1><p class="sub">Login to your website account.</p>
+<div class="field"><label>Email</label><input id="loginEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
+<div class="field"><label>Password</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Password"></div>
+<button class="primary" id="loginBtn" type="button">LOGIN</button><div class="message" id="loginMessage"></div>
+</section>
+<section class="panel" id="signupPanel">
+<h1>Create account</h1><p class="sub">Register a new account. Your profile will be created automatically.</p>
+<div class="field"><label>Name</label><input id="signupName" type="text" autocomplete="name" placeholder="Your name"></div>
+<div class="field"><label>Email</label><input id="signupEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
+<div class="field"><label>Password</label><input id="signupPassword" type="password" autocomplete="new-password" placeholder="Minimum 6 characters"></div>
+<button class="primary" id="signupBtn" type="button">CREATE ACCOUNT</button><div class="message" id="signupMessage"></div>
+</section>
+</div>
+<a class="back" href="index.html">← Back to website</a>
+</div>
+<script type="module">
+import{createClient}from"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+const U="https://sctyvhjmmtxjcpdecwfe.supabase.co",K="sb_publishable_qsyg3Kk-XeSl7TSXKSZchg_0GJuoksR",OWNER_UID="b1da36d1-80cd-4ed3-a763-4d98813de873";
+const supabase=createClient(U,K);
+const $=id=>document.getElementById(id);
+function setTab(mode){const login=mode==="login";$("loginTab").classList.toggle("active",login);$("signupTab").classList.toggle("active",!login);$("loginPanel").classList.toggle("active",login);$("signupPanel").classList.toggle("active",!login)}
+$("loginTab").onclick=()=>setTab("login");$("signupTab").onclick=()=>setTab("signup");
+async function checkAccess(user){if(!user)return false;if(user.id===OWNER_UID){location.replace("owner-dashboard.html");return false}for(let i=0;i<2;i++){const{data,error}=await supabase.from("user_profiles").select("status").eq("id",user.id).maybeSingle();if(!error&&data){if(data.status==="blocked"){await supabase.auth.signOut();return "blocked"}return true}await new Promise(r=>setTimeout(r,350))}await supabase.auth.signOut();return "profile-error"}
+async function login(){const email=$("loginEmail").value.trim(),password=$("loginPassword").value,msg=$("loginMessage"),btn=$("loginBtn");msg.className="message";if(!email||!password){msg.textContent="Enter email and password.";return}btn.disabled=true;btn.textContent="LOGGING IN...";msg.textContent="";const{data,error}=await supabase.auth.signInWithPassword({email,password});if(error||!data.user){msg.textContent="Invalid email or password.";btn.disabled=false;btn.textContent="LOGIN";return}const access=await checkAccess(data.user);if(access===true){location.replace("account.html");return}msg.textContent=access==="blocked"?"This account is blocked.":"Account profile could not be verified.";btn.disabled=false;btn.textContent="LOGIN"}
+async function signup(){const name=$("signupName").value.trim(),email=$("signupEmail").value.trim(),password=$("signupPassword").value,msg=$("signupMessage"),btn=$("signupBtn");msg.className="message";if(!name||!email||!password){msg.textContent="Fill all fields.";return}if(password.length<6){msg.textContent="Password must be at least 6 characters.";return}btn.disabled=true;btn.textContent="CREATING...";msg.textContent="";const{data,error}=await supabase.auth.signUp({email,password,options:{data:{name}}});if(error){msg.textContent=error.message;btn.disabled=false;btn.textContent="CREATE ACCOUNT";return}if(!data.session){msg.className="message ok";msg.textContent="Account created. Check your email to confirm, then login.";btn.disabled=false;btn.textContent="CREATE ACCOUNT";return}const access=await checkAccess(data.user);if(access===true){location.replace("account.html");return}msg.textContent=access==="blocked"?"This account is blocked.":"Account created, but profile verification failed.";btn.disabled=false;btn.textContent="CREATE ACCOUNT"}
+$("loginBtn").onclick=login;$("signupBtn").onclick=signup;$("loginPassword").addEventListener("keydown",e=>{if(e.key==="Enter")login()});$("signupPassword").addEventListener("keydown",e=>{if(e.key==="Enter")signup()});
+const params=new URLSearchParams(location.search);if(params.get("blocked")==="1"){$("loginMessage").textContent="This account is blocked."}
+const{data:{session}}=await supabase.auth.getSession();if(session?.user){const access=await checkAccess(session.user);if(access===true)location.replace("account.html")}
+</script>
+</body>
+</html>
