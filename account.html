@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SATYA — Account</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}:root{--bg:#050505;--panel:#0b0b0b;--border:#202020;--text:#fff;--muted:#777;--green:#78e08f;--red:#ff7675}body{min-height:100vh;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}.nav{height:70px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(5,5,5,.95);position:sticky;top:0}.brand{font-size:20px;font-weight:800;letter-spacing:4px}.logout{background:#fff;color:#000;border:0;border-radius:8px;padding:10px 16px;font-weight:800;cursor:pointer}.container{width:90%;max-width:900px;margin:45px auto}.hero{margin-bottom:25px}.hero h1{font-size:42px;margin-bottom:8px}.hero p{color:var(--muted)}.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:26px;margin-bottom:18px}.title{font-size:18px;margin-bottom:18px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.item{background:#080808;border:1px solid #1c1c1c;border-radius:12px;padding:18px}.label{color:#666;font-size:10px;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px}.value{font-size:15px;word-break:break-word}.status{display:inline-block;padding:7px 11px;border-radius:20px;font-size:11px;border:1px solid rgba(120,224,143,.25);background:rgba(120,224,143,.05);color:var(--green);text-transform:uppercase}.message{padding:35px;text-align:center;color:#777}@media(max-width:650px){.grid{grid-template-columns:1fr}.hero h1{font-size:34px}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="brand">SATYA</div><button class="logout" id="logoutBtn">LOGOUT</button></header>
+<main class="container">
+<section class="hero"><h1>My Account</h1><p>Your website account details.</p></section>
+<section class="card" id="accountCard"><div class="message">Loading account...</div></section>
+</main>
+<script type="module">
+import{createClient}from"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+const U="https://sctyvhjmmtxjcpdecwfe.supabase.co",K="sb_publishable_qsyg3Kk-XeSl7TSXKSZchg_0GJuoksR",OWNER_UID="b1da36d1-80cd-4ed3-a763-4d98813de873";
+const supabase=createClient(U,K),card=document.getElementById("accountCard");
+function esc(v=""){return String(v).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+async function init(){const{data:{session}}=await supabase.auth.getSession();if(!session?.user){location.replace("user-auth.html");return}if(session.user.id===OWNER_UID){location.replace("owner-dashboard.html");return}const{data:profile,error}=await supabase.from("user_profiles").select("name,email,status,created_at").eq("id",session.user.id).maybeSingle();if(error||!profile){await supabase.auth.signOut();location.replace("user-auth.html");return}if(profile.status==="blocked"){await supabase.auth.signOut();location.replace("user-auth.html?blocked=1");return}card.innerHTML=`<h2 class="title">Account Overview</h2><div class="grid"><div class="item"><div class="label">Name</div><div class="value">${esc(profile.name||"Not set")}</div></div><div class="item"><div class="label">Email</div><div class="value">${esc(profile.email||session.user.email||"")}</div></div><div class="item"><div class="label">Status</div><span class="status">${esc(profile.status||"active")}</span></div><div class="item"><div class="label">Joined</div><div class="value">${profile.created_at?new Date(profile.created_at).toLocaleString("en-IN",{dateStyle:"medium",timeStyle:"short"}):"Unknown"}</div></div></div>`}
+document.getElementById("logoutBtn").onclick=async()=>{await supabase.auth.signOut();location.replace("user-auth.html")};
+init();
+</script>
+</body>
+</html>
