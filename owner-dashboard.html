@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>SATYA — Owner Dashboard</title>
-
 <style>
 * {
     margin: 0;
@@ -30,7 +22,7 @@ body {
     min-height: 100vh;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
 
 .navbar {
     height: 74px;
@@ -72,7 +64,7 @@ body {
     letter-spacing: 1.5px;
 }
 
-/* CONTAINER */
+/* ================= CONTAINER ================= */
 
 .container {
     width: 90%;
@@ -80,7 +72,7 @@ body {
     margin: 50px auto;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 .header {
     display: flex;
@@ -143,7 +135,7 @@ body {
     justify-content: center;
 }
 
-/* STATS */
+/* ================= STATS ================= */
 
 .stats {
     display: grid;
@@ -192,14 +184,7 @@ body {
     color: var(--red);
 }
 
-/* MESSAGE ANALYTICS */
-
-.analytics {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 18px;
-    margin-bottom: 25px;
-}
+/* ================= COMMON PANELS ================= */
 
 .panel,
 .settings-panel,
@@ -208,6 +193,15 @@ body {
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 18px;
+}
+
+/* ================= MESSAGE ANALYTICS ================= */
+
+.analytics {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 18px;
+    margin-bottom: 25px;
 }
 
 .panel {
@@ -293,8 +287,7 @@ body {
     font-weight: bold;
 }
 
-
-/* ADVANCED VISITOR ANALYTICS */
+/* ================= VISITOR ANALYTICS ================= */
 
 .visitor-analytics {
     margin-bottom: 25px;
@@ -426,8 +419,7 @@ body {
     transform: translateY(20px);
 }
 
-
-/* SETTINGS */
+/* ================= SETTINGS ================= */
 
 .settings-panel {
     padding: 24px;
@@ -588,8 +580,12 @@ body {
     background: #ddd;
 }
 
+.save-settings:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
 
-/* OWNER PROFILE */
+/* ================= OWNER PROFILE ================= */
 
 .section-card {
     padding: 24px;
@@ -600,6 +596,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 15px;
     margin-bottom: 5px;
 }
 
@@ -670,8 +667,128 @@ body {
     cursor: not-allowed;
 }
 
+/* ================= USER MANAGEMENT ================= */
 
-/* MESSAGES */
+.user-management {
+    margin-bottom: 25px;
+}
+
+.user-controls {
+    display: grid;
+    grid-template-columns: 1fr 180px;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.user-controls .search,
+.user-controls .filter {
+    width: 100%;
+}
+
+.user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.user-card {
+    background: #080808;
+    border: 1px solid #1c1c1c;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    transition: .25s;
+}
+
+.user-card:hover {
+    border-color: #3a3a3a;
+    transform: translateY(-1px);
+}
+
+.user-info {
+    min-width: 0;
+}
+
+.user-name {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.user-email {
+    color: #777;
+    font-size: 12px;
+    margin-top: 5px;
+    word-break: break-word;
+}
+
+.user-date {
+    color: #555;
+    font-size: 11px;
+    margin-top: 6px;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.user-status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: 1px solid #333;
+}
+
+.user-status.active {
+    color: var(--green);
+    border-color: rgba(120,224,143,.25);
+    background: rgba(120,224,143,.05);
+}
+
+.user-status.blocked {
+    color: var(--red);
+    border-color: rgba(255,118,117,.25);
+    background: rgba(255,118,117,.05);
+}
+
+.user-action-btn {
+    border: 1px solid #292929;
+    background: #101010;
+    color: #aaa;
+    padding: 8px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.user-action-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+.user-action-btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.user-empty {
+    padding: 45px 20px;
+    text-align: center;
+    color: #555;
+    border: 1px dashed #292929;
+    border-radius: 10px;
+}
+
+/* ================= MESSAGES ================= */
 
 .content {
     overflow: hidden;
@@ -686,6 +803,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 15px;
     margin-bottom: 18px;
 }
 
@@ -699,6 +817,7 @@ body {
     padding: 6px 9px;
     border-radius: 20px;
     font-size: 10px;
+    white-space: nowrap;
 }
 
 .controls {
@@ -726,6 +845,7 @@ body {
     border: 1px solid var(--border);
     padding: 0 15px;
     border-radius: 9px;
+    outline: none;
 }
 
 .message-list {
@@ -773,6 +893,7 @@ body {
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    flex-shrink: 0;
 }
 
 .message-name {
@@ -784,6 +905,7 @@ body {
     color: #666;
     font-size: 12px;
     margin-top: 5px;
+    word-break: break-word;
 }
 
 .message-date {
@@ -828,8 +950,7 @@ body {
     color: #555;
 }
 
-
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 .footer {
     display: flex;
@@ -853,8 +974,11 @@ body {
     cursor: pointer;
 }
 
+.logout:hover {
+    background: #ddd;
+}
 
-/* TOAST */
+/* ================= TOAST ================= */
 
 .toast {
     position: fixed;
@@ -877,8 +1001,7 @@ body {
     opacity: 1;
 }
 
-
-/* RESPONSIVE */
+/* ================= RESPONSIVE ================= */
 
 @media (max-width: 1000px) {
 
@@ -909,12 +1032,28 @@ body {
     .visitor-cards {
         grid-template-columns: repeat(2, 1fr);
     }
+
 }
 
 @media (max-width: 700px) {
 
     .profile-grid {
         grid-template-columns: 1fr;
+    }
+
+    .user-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .user-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user-actions {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
 
 }
@@ -924,6 +1063,14 @@ body {
     .container {
         width: 92%;
         margin: 35px auto;
+    }
+
+    .navbar {
+        padding: 0 4%;
+    }
+
+    .owner-label {
+        font-size: 9px;
     }
 
     .header {
@@ -953,7 +1100,7 @@ body {
     }
 
     .filter {
-        height: 43px;
+        min-height: 43px;
     }
 
     .message-top {
@@ -985,6 +1132,10 @@ body {
         padding: 20px;
     }
 
+    .section-title {
+        align-items: flex-start;
+    }
+
     .save-btn {
         width: 100%;
     }
@@ -1011,2665 +1162,13 @@ body {
     .visitor-chart-panel {
         padding: 15px;
     }
+
+    .toast {
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        text-align: center;
+    }
+
 }
 </style>
-</head>
-
-<body>
-
-<nav class="navbar">
-
-    <div class="logo">SATYA</div>
-
-    <div class="nav-right">
-
-        <span
-            id="navLiveDot"
-            class="live-dot"
-        ></span>
-
-        <span class="owner-label">
-            OWNER PANEL
-        </span>
-
-    </div>
-
-</nav>
-
-<main class="container">
-
-    <!-- HEADER -->
-
-    <section class="header">
-
-        <div>
-
-            <h1>Dashboard</h1>
-
-            <p>
-                Control center for your website.
-            </p>
-
-        </div>
-
-        <div class="header-actions">
-
-            <button
-                class="notification-btn"
-                onclick="showNotifications()"
-            >
-                🔔
-
-                <span
-                    id="notificationBadge"
-                    class="notification-badge"
-                >
-                    0
-                </span>
-
-            </button>
-
-            <button
-                class="refresh-btn"
-                onclick="loadMessages(); loadAdvancedAnalytics();"
-            >
-                ↻ Refresh
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- STATS -->
-
-    <section class="stats">
-
-        <div class="stat-card">
-
-            <div class="stat-label">
-                Total Messages
-            </div>
-
-            <div
-                class="stat-number"
-                id="totalMessages"
-            >
-                0
-            </div>
-
-            <div class="stat-sub">
-                All enquiries
-            </div>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-label">
-                Unread
-            </div>
-
-            <div
-                class="stat-number"
-                id="unreadMessages"
-            >
-                0
-            </div>
-
-            <div class="stat-sub">
-                Need your attention
-            </div>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-label">
-                Today
-            </div>
-
-            <div
-                class="stat-number"
-                id="todayMessages"
-            >
-                0
-            </div>
-
-            <div class="stat-sub">
-                Messages received today
-            </div>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-label">
-                Website
-            </div>
-
-            <div
-                class="stat-number green"
-                id="websiteStatusCard"
-            >
-                LIVE
-            </div>
-
-            <div
-                class="stat-sub"
-                id="websiteStatusSub"
-            >
-                Operational
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- MESSAGE ANALYTICS -->
-
-    <section class="analytics">
-
-        <div class="panel">
-
-            <div class="panel-title">
-
-                <h2>
-                    Message Activity
-                </h2>
-
-                <span>
-                    Last 7 days
-                </span>
-
-            </div>
-
-            <div
-                class="chart"
-                id="chart"
-            ></div>
-
-        </div>
-
-
-        <div class="panel">
-
-            <div class="panel-title">
-
-                <h2>
-                    Overview
-                </h2>
-
-                <span>
-                    Live
-                </span>
-
-            </div>
-
-            <div class="activity">
-
-                <div class="activity-row">
-
-                    <span class="activity-name">
-                        Last 7 Days
-                    </span>
-
-                    <span
-                        class="activity-value"
-                        id="weekMessages"
-                    >
-                        0
-                    </span>
-
-                </div>
-
-
-                <div class="activity-row">
-
-                    <span class="activity-name">
-                        Last 30 Days
-                    </span>
-
-                    <span
-                        class="activity-value"
-                        id="monthMessages"
-                    >
-                        0
-                    </span>
-
-                </div>
-
-
-                <div class="activity-row">
-
-                    <span class="activity-name">
-                        Read
-                    </span>
-
-                    <span
-                        class="activity-value"
-                        id="readMessages"
-                    >
-                        0
-                    </span>
-
-                </div>
-
-
-                <div class="activity-row">
-
-                    <span class="activity-name">
-                        Unread
-                    </span>
-
-                    <span
-                        class="activity-value"
-                        id="overviewUnread"
-                    >
-                        0
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ADVANCED VISITOR ANALYTICS -->
-
-    <section class="section-card visitor-analytics">
-
-        <div class="analytics-header">
-
-            <div>
-
-                <h2>
-                    Visitor Analytics
-                </h2>
-
-                <p>
-                    Website traffic and visitor overview.
-                </p>
-
-            </div>
-
-            <div
-                class="analytics-updated"
-                id="analyticsUpdated"
-            >
-                Updating...
-            </div>
-
-        </div>
-
-
-        <div class="visitor-cards">
-
-            <div class="visitor-card">
-
-                <span>
-                    Total Visitors
-                </span>
-
-                <strong id="analyticsTotalVisitors">
-                    0
-                </strong>
-
-            </div>
-
-
-            <div class="visitor-card">
-
-                <span>
-                    Today
-                </span>
-
-                <strong id="analyticsTodayVisitors">
-                    0
-                </strong>
-
-            </div>
-
-
-            <div class="visitor-card">
-
-                <span>
-                    This Month
-                </span>
-
-                <strong id="analyticsMonthVisitors">
-                    0
-                </strong>
-
-            </div>
-
-
-            <div class="visitor-card">
-
-                <span>
-                    Total Messages
-                </span>
-
-                <strong id="analyticsTotalMessages">
-                    0
-                </strong>
-
-            </div>
-
-
-            <div class="visitor-card">
-
-                <span>
-                    Unread Messages
-                </span>
-
-                <strong id="analyticsUnreadMessages">
-                    0
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <div class="visitor-chart-panel">
-
-            <div class="visitor-chart-title">
-
-                <h3>
-                    Visitor Traffic
-                </h3>
-
-                <span>
-                    Last 7 days
-                </span>
-
-            </div>
-
-            <div
-                id="visitorChart"
-                class="visitor-chart"
-            ></div>
-
-        </div>
-
-    </section>
-
-
-    <!-- SETTINGS -->
-
-    <section class="settings-panel">
-
-        <div class="settings-header">
-
-            <div>
-
-                <h2>
-                    Website Settings
-                </h2>
-
-                <p>
-                    Manage important website controls from your owner panel.
-                </p>
-
-            </div>
-
-            <div
-                class="settings-status"
-                id="settingsStatus"
-            >
-                Loading settings...
-            </div>
-
-        </div>
-
-
-        <div class="settings-grid">
-
-            <div class="setting-item">
-
-                <div class="setting-label">
-                    Website Status
-                </div>
-
-                <div class="setting-description">
-                    Choose whether your website is operating normally or in maintenance mode.
-                </div>
-
-                <select
-                    id="websiteStatus"
-                    class="setting-select"
-                >
-
-                    <option value="LIVE">
-                        LIVE
-                    </option>
-
-                    <option value="MAINTENANCE">
-                        MAINTENANCE
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="setting-item">
-
-                <div class="setting-label">
-                    Contact Form
-                </div>
-
-                <div class="setting-description">
-                    Allow visitors to send messages through your website contact form.
-                </div>
-
-                <div class="toggle-row">
-
-                    <span
-                        id="contactFormText"
-                        style="color:#aaa;font-size:13px;"
-                    >
-                        Enabled
-                    </span>
-
-                    <label class="toggle">
-
-                        <input
-                            type="checkbox"
-                            id="contactFormEnabled"
-                        >
-
-                        <span class="slider"></span>
-
-                    </label>
-
-                </div>
-
-            </div>
-
-
-            <div class="setting-item">
-
-                <div class="setting-label">
-                    Notifications
-                </div>
-
-                <div class="setting-description">
-                    Enable or disable dashboard notification alerts.
-                </div>
-
-                <div class="toggle-row">
-
-                    <span
-                        id="notificationsText"
-                        style="color:#aaa;font-size:13px;"
-                    >
-                        Enabled
-                    </span>
-
-                    <label class="toggle">
-
-                        <input
-                            type="checkbox"
-                            id="notificationsEnabled"
-                        >
-
-                        <span class="slider"></span>
-
-                    </label>
-
-                </div>
-
-            </div>
-
-
-            <div class="setting-item full">
-
-                <div class="setting-label">
-                    Website Announcement
-                </div>
-
-                <div class="setting-description">
-                    Write an announcement that can later be displayed on your public website.
-                </div>
-
-                <textarea
-                    id="announcement"
-                    class="setting-textarea"
-                    placeholder="Example: New updates coming soon..."
-                ></textarea>
-
-            </div>
-
-        </div>
-
-
-        <div class="settings-footer">
-
-            <button
-                class="save-settings"
-                onclick="saveSettings()"
-            >
-                SAVE SETTINGS
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- OWNER PROFILE -->
-
-    <section class="section-card">
-
-        <div class="section-title">
-
-            <div>
-
-                <h2>
-                    Owner Profile
-                </h2>
-
-                <p>
-                    Manage your owner account information.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="profile-grid">
-
-            <div class="profile-item">
-
-                <label>
-                    Owner Name
-                </label>
-
-                <input
-                    type="text"
-                    id="ownerName"
-                    placeholder="Owner name"
-                >
-
-            </div>
-
-
-            <div class="profile-item">
-
-                <label>
-                    Email
-                </label>
-
-                <input
-                    type="email"
-                    id="ownerEmail"
-                    disabled
-                >
-
-            </div>
-
-        </div>
-
-
-        <button
-            class="save-btn"
-            id="saveProfileBtn"
-            onclick="saveOwnerProfile()"
-        >
-            Save Profile
-        </button>
-
-    </section>
-    <!-- USER MANAGEMENT -->
-
-    <section class="section-card user-management">
-
-        <div class="section-title">
-
-            <div>
-                <h2>
-                    User Management
-                </h2>
-
-                <p>
-                    Manage registered users and account status.
-                </p>
-            </div>
-
-            <span
-                class="badge"
-                id="userResultBadge"
-            >
-                0 users
-            </span>
-
-        </div>
-
-
-        <div class="user-controls">
-
-            <input
-                id="userSearchInput"
-                class="search"
-                type="text"
-                placeholder="Search users..."
-                oninput="renderUsers()"
-            >
-
-            <select
-                id="userStatusFilter"
-                class="filter"
-                onchange="renderUsers()"
-            >
-                <option value="all">
-                    All
-                </option>
-
-                <option value="active">
-                    Active
-                </option>
-
-                <option value="blocked">
-                    Blocked
-                </option>
-            </select>
-
-        </div>
-
-
-        <div
-            id="userList"
-            class="user-list"
-        >
-
-            <div class="loading">
-                Loading users...
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- MESSAGES -->
-
-    <section class="content">
-
-        <div class="content-top">
-
-            <div class="content-title">
-
-                <h2>
-                    Messages
-                </h2>
-
-                <span
-                    class="badge"
-                    id="resultBadge"
-                >
-                    0 messages
-                </span>
-
-            </div>
-
-
-            <div class="controls">
-
-                <input
-                    id="searchInput"
-                    class="search"
-                    type="text"
-                    placeholder="Search messages..."
-                    oninput="renderMessages()"
-                >
-
-
-                <select
-                    id="filterSelect"
-                    class="filter"
-                    onchange="renderMessages()"
-                >
-
-                    <option value="all">
-                        All
-                    </option>
-
-                    <option value="unread">
-                        Unread
-                    </option>
-
-                    <option value="read">
-                        Read
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-
-        <div
-            id="messageList"
-            class="message-list"
-        >
-
-            <div class="loading">
-                Loading messages...
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <div class="footer">
-
-        <div class="security">
-            🔒 Owner access protected
-        </div>
-
-        <button
-            class="logout"
-            onclick="logout()"
-        >
-            LOGOUT
-        </button>
-
-    </div>
-
-</main>
-
-
-<div
-    id="toast"
-    class="toast"
-></div>
-
-
-<script type="module">
-
-import {
-    createClient
-} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-
-
-const SUPABASE_URL =
-    "https://sctyvhjmmtxjcpdecwfe.supabase.co";
-
-
-const SUPABASE_KEY =
-    "sb_publishable_qsyg3Kk-XeSl7TSXKSZchg_0GJuoksR";
-
-
-const supabase =
-    createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-
-let allMessages = [];
-let previousUnread = 0;
-let currentSettings = null;
-
-
-/* OWNER CHECK */
-
-async function checkOwner() {
-
-    const {
-        data,
-        error
-    } = await supabase.auth.getSession();
-
-
-    if (
-        error ||
-        !data.session
-    ) {
-
-        window.location.href =
-            "owner-login.html";
-
-        return false;
-
-    }
-
-
-    return true;
-
-}
-
-
-/* LOAD SETTINGS */
-
-async function loadSettings() {
-
-    const {
-        data,
-        error
-    } = await supabase
-        .from("site_settings")
-        .select("*")
-        .limit(1)
-        .maybeSingle();
-
-
-    if (error) {
-
-        console.error(
-            "Settings error:",
-            error
-        );
-
-        document.getElementById(
-            "settingsStatus"
-        ).textContent =
-            "Unable to load";
-
-        showToast(
-            "Settings could not be loaded"
-        );
-
-        return;
-
-    }
-
-
-    if (!data) {
-
-        document.getElementById(
-            "settingsStatus"
-        ).textContent =
-            "No settings";
-
-        return;
-
-    }
-
-
-    currentSettings =
-        data;
-
-
-    document.getElementById(
-        "websiteStatus"
-    ).value =
-        data.website_status || "LIVE";
-
-
-    document.getElementById(
-        "announcement"
-    ).value =
-        data.announcement || "";
-
-
-    document.getElementById(
-        "contactFormEnabled"
-    ).checked =
-        data.contact_form_enabled !== false;
-
-
-    document.getElementById(
-        "notificationsEnabled"
-    ).checked =
-        data.notifications_enabled !== false;
-
-
-    updateToggleText();
-    updateWebsiteStatusUI();
-
-
-    document.getElementById(
-        "settingsStatus"
-    ).textContent =
-        "Settings loaded";
-
-}
-
-
-/* LOAD OWNER PROFILE */
-
-async function loadOwnerProfile() {
-
-    const {
-        data: {
-            user
-        },
-        error
-    } = await supabase.auth.getUser();
-
-
-    if (
-        error ||
-        !user
-    ) {
-
-        console.error(
-            "Owner profile error:",
-            error
-        );
-
-        return;
-
-    }
-
-
-    const emailInput =
-        document.getElementById(
-            "ownerEmail"
-        );
-
-
-    const nameInput =
-        document.getElementById(
-            "ownerName"
-        );
-
-
-    if (emailInput) {
-
-        emailInput.value =
-            user.email || "";
-
-    }
-
-
-    if (nameInput) {
-
-        nameInput.value =
-            user.user_metadata?.name || "";
-
-    }
-
-}
-
-
-/* SAVE OWNER PROFILE */
-
-window.saveOwnerProfile =
-async function() {
-
-    const button =
-        document.getElementById(
-            "saveProfileBtn"
-        );
-
-
-    const nameInput =
-        document.getElementById(
-            "ownerName"
-        );
-
-
-    const name =
-        nameInput
-        ? nameInput.value.trim()
-        : "";
-
-
-    if (!name) {
-
-        showToast(
-            "Please enter owner name"
-        );
-
-        return;
-
-    }
-
-
-    button.disabled = true;
-
-    button.textContent =
-        "SAVING...";
-
-
-    const {
-        data,
-        error
-    } = await supabase.auth.updateUser({
-
-        data: {
-            name: name
-        }
-
-    });
-
-
-    button.disabled = false;
-
-    button.textContent =
-        "Save Profile";
-
-
-    if (error) {
-
-        console.error(
-            "Profile save error:",
-            error
-        );
-
-        showToast(
-            "Profile could not be saved"
-        );
-
-        return;
-
-    }
-
-
-    if (data && data.user) {
-
-        if (nameInput) {
-
-            nameInput.value =
-                data.user.user_metadata?.name || name;
-
-        }
-
-    }
-
-
-    showToast(
-        "✓ Profile saved successfully"
-    );
-
-};
-
-
-/* SAVE SETTINGS */
-
-window.saveSettings =
-async function() {
-
-    const button =
-        document.querySelector(
-            ".save-settings"
-        );
-
-
-    const websiteStatus =
-        document.getElementById(
-            "websiteStatus"
-        ).value;
-
-
-    const announcement =
-        document.getElementById(
-            "announcement"
-        ).value
-        .trim();
-
-
-    const contactFormEnabled =
-        document.getElementById(
-            "contactFormEnabled"
-        ).checked;
-
-
-    const notificationsEnabled =
-        document.getElementById(
-            "notificationsEnabled"
-        ).checked;
-
-
-    button.disabled = true;
-
-    button.textContent =
-        "SAVING...";
-
-
-    const {
-        data: existing,
-        error: findError
-    } = await supabase
-        .from("site_settings")
-        .select("id")
-        .limit(1)
-        .maybeSingle();
-
-
-    if (findError) {
-
-        console.error(
-            findError
-        );
-
-        button.disabled = false;
-
-        button.textContent =
-            "SAVE SETTINGS";
-
-        showToast(
-            "Could not load settings"
-        );
-
-        return;
-
-    }
-
-
-    let error;
-
-
-    if (existing) {
-
-        const result =
-            await supabase
-                .from("site_settings")
-                .update({
-
-                    website_status:
-                        websiteStatus,
-
-                    announcement:
-                        announcement,
-
-                    contact_form_enabled:
-                        contactFormEnabled,
-
-                    notifications_enabled:
-                        notificationsEnabled,
-
-                    updated_at:
-                        new Date().toISOString()
-
-                })
-                .eq(
-                    "id",
-                    existing.id
-                );
-
-
-        error =
-            result.error;
-
-    } else {
-
-        const result =
-            await supabase
-                .from("site_settings")
-                .insert({
-
-                    website_status:
-                        websiteStatus,
-
-                    announcement:
-                        announcement,
-
-                    contact_form_enabled:
-                        contactFormEnabled,
-
-                    notifications_enabled:
-                        notificationsEnabled
-
-                });
-
-
-        error =
-            result.error;
-
-    }
-
-
-    button.disabled = false;
-
-    button.textContent =
-        "SAVE SETTINGS";
-
-
-    if (error) {
-
-        console.error(
-            "Save settings error:",
-            error
-        );
-
-        showToast(
-            "Settings could not be saved"
-        );
-
-        return;
-
-    }
-
-
-    currentSettings = {
-
-        website_status:
-            websiteStatus,
-
-        announcement:
-            announcement,
-
-        contact_form_enabled:
-            contactFormEnabled,
-
-        notifications_enabled:
-            notificationsEnabled
-
-    };
-
-
-    updateToggleText();
-    updateWebsiteStatusUI();
-
-
-    document.getElementById(
-        "settingsStatus"
-    ).textContent =
-        "Saved just now";
-
-
-    showToast(
-        "✓ Settings saved successfully"
-    );
-
-};
-
-
-/* TOGGLE TEXT */
-
-function updateToggleText() {
-
-    const contact =
-        document.getElementById(
-            "contactFormEnabled"
-        );
-
-
-    const notifications =
-        document.getElementById(
-            "notificationsEnabled"
-        );
-
-
-    document.getElementById(
-        "contactFormText"
-    ).textContent =
-        contact.checked
-        ? "Enabled"
-        : "Disabled";
-
-
-    document.getElementById(
-        "notificationsText"
-    ).textContent =
-        notifications.checked
-        ? "Enabled"
-        : "Disabled";
-
-}
-
-
-/* WEBSITE STATUS */
-
-function updateWebsiteStatusUI() {
-
-    const status =
-        document.getElementById(
-            "websiteStatus"
-        ).value;
-
-
-    const card =
-        document.getElementById(
-            "websiteStatusCard"
-        );
-
-
-    const sub =
-        document.getElementById(
-            "websiteStatusSub"
-        );
-
-
-    const dot =
-        document.getElementById(
-            "navLiveDot"
-        );
-
-
-    if (
-        status === "MAINTENANCE"
-    ) {
-
-        card.textContent =
-            "MAINT.";
-
-        card.classList.remove(
-            "green"
-        );
-
-        card.classList.add(
-            "red"
-        );
-
-        sub.textContent =
-            "Maintenance mode";
-
-
-        dot.style.background =
-            "var(--red)";
-
-
-        dot.style.boxShadow =
-            "0 0 12px rgba(255,118,117,.5)";
-
-    } else {
-
-        card.textContent =
-            "LIVE";
-
-        card.classList.remove(
-            "red"
-        );
-
-        card.classList.add(
-            "green"
-        );
-
-        sub.textContent =
-            "Operational";
-
-
-        dot.style.background =
-            "var(--green)";
-
-
-        dot.style.boxShadow =
-            "0 0 12px rgba(120,224,143,.5)";
-
-    }
-
-}
-
-
-/* CHANGE EVENTS */
-
-document.getElementById(
-    "websiteStatus"
-).addEventListener(
-    "change",
-    updateWebsiteStatusUI
-);
-
-
-document.getElementById(
-    "contactFormEnabled"
-).addEventListener(
-    "change",
-    updateToggleText
-);
-
-
-document.getElementById(
-    "notificationsEnabled"
-).addEventListener(
-    "change",
-    updateToggleText
-);
-
-
-/* LOAD MESSAGES */
-
-window.loadMessages =
-async function() {
-
-    const list =
-        document.getElementById(
-            "messageList"
-        );
-
-
-    list.innerHTML =
-        `<div class="loading">
-            Loading messages...
-        </div>`;
-
-
-    const {
-        data,
-        error
-    } = await supabase
-        .from("messages")
-        .select("*")
-        .order(
-            "created_at",
-            {
-                ascending: false
-            }
-        );
-
-
-    if (error) {
-
-        console.error(error);
-
-        list.innerHTML =
-            `<div class="empty">
-                Unable to load messages.
-            </div>`;
-
-        return;
-
-    }
-
-
-    allMessages =
-        data || [];
-
-
-    updateStats();
-    updateAnalytics();
-    renderMessages();
-
-
-    const unread =
-        allMessages.filter(
-            message =>
-                !message.is_read
-        ).length;
-
-
-    const notificationsEnabled =
-        currentSettings
-        ? currentSettings.notifications_enabled !== false
-        : true;
-
-
-    if (
-        notificationsEnabled &&
-        unread > previousUnread &&
-        previousUnread !== 0
-    ) {
-
-        showToast(
-            "🔔 New message received"
-        );
-
-    }
-
-
-    previousUnread =
-        unread;
-
-};
-
-
-/* STATS */
-
-function updateStats() {
-
-    const now =
-        new Date();
-
-
-    const today =
-        allMessages.filter(
-            message => {
-
-                const date =
-                    new Date(
-                        message.created_at
-                    );
-
-
-                return (
-                    date.toDateString() ===
-                    now.toDateString()
-                );
-
-            }
-        ).length;
-
-
-    const unread =
-        allMessages.filter(
-            message =>
-                !message.is_read
-        ).length;
-
-
-    document.getElementById(
-        "totalMessages"
-    ).textContent =
-        allMessages.length;
-
-
-    document.getElementById(
-        "unreadMessages"
-    ).textContent =
-        unread;
-
-
-    document.getElementById(
-        "todayMessages"
-    ).textContent =
-        today;
-
-
-    document.getElementById(
-        "overviewUnread"
-    ).textContent =
-        unread;
-
-
-    document.getElementById(
-        "readMessages"
-    ).textContent =
-        allMessages.length -
-        unread;
-
-
-    const badge =
-        document.getElementById(
-            "notificationBadge"
-        );
-
-
-    if (unread > 0) {
-
-        badge.textContent =
-            unread > 99
-            ? "99+"
-            : unread;
-
-
-        badge.style.display =
-            "flex";
-
-    } else {
-
-        badge.style.display =
-            "none";
-
-    }
-
-}
-
-
-/* MESSAGE ANALYTICS */
-
-function updateAnalytics() {
-
-    const now =
-        new Date();
-
-
-    const week =
-        allMessages.filter(
-            message =>
-                now -
-                new Date(
-                    message.created_at
-                )
-                <=
-                7 *
-                24 *
-                60 *
-                60 *
-                1000
-        ).length;
-
-
-    const month =
-        allMessages.filter(
-            message =>
-                now -
-                new Date(
-                    message.created_at
-                )
-                <=
-                30 *
-                24 *
-                60 *
-                60 *
-                1000
-        ).length;
-
-
-    document.getElementById(
-        "weekMessages"
-    ).textContent =
-        week;
-
-
-    document.getElementById(
-        "monthMessages"
-    ).textContent =
-        month;
-
-
-    renderChart();
-
-}
-
-
-/* MESSAGE CHART */
-
-function renderChart() {
-
-    const chart =
-        document.getElementById(
-            "chart"
-        );
-
-
-    const now =
-        new Date();
-
-
-    const days = [];
-
-
-    for (
-        let i = 6;
-        i >= 0;
-        i--
-    ) {
-
-        const date =
-            new Date(now);
-
-
-        date.setHours(
-            0,
-            0,
-            0,
-            0
-        );
-
-
-        date.setDate(
-            date.getDate() - i
-        );
-
-
-        const next =
-            new Date(date);
-
-
-        next.setDate(
-            next.getDate() + 1
-        );
-
-
-        const count =
-            allMessages.filter(
-                message => {
-
-                    const created =
-                        new Date(
-                            message.created_at
-                        );
-
-
-                    return (
-                        created >= date &&
-                        created < next
-                    );
-
-                }
-            ).length;
-
-
-        days.push({
-            date,
-            count
-        });
-
-    }
-
-
-    const max =
-        Math.max(
-            ...days.map(
-                day =>
-                    day.count
-            ),
-            1
-        );
-
-
-    chart.innerHTML =
-        days.map(
-            day => {
-
-                const height =
-                    Math.max(
-                        4,
-                        (
-                            day.count /
-                            max
-                        ) *
-                        115
-                    );
-
-
-                const label =
-                    day.date.toLocaleDateString(
-                        undefined,
-                        {
-                            weekday:
-                                "short"
-                        }
-                    );
-
-
-                return `
-                    <div class="bar-wrap">
-
-                        <div
-                            class="bar"
-                            style="height:${height}px"
-                            title="${day.count} message${day.count === 1 ? "" : "s"}"
-                        ></div>
-
-                        <div class="bar-label">
-                            ${label}
-                        </div>
-
-                    </div>
-                `;
-
-            }
-        )
-        .join("");
-
-}
-
-
-/* ADVANCED VISITOR ANALYTICS */
-
-async function loadAdvancedAnalytics() {
-
-    try {
-
-        const {
-            data: visitors,
-            error: visitorError
-        } = await supabase
-            .from("visitors")
-            .select("visited_at")
-            .order(
-                "visited_at",
-                {
-                    ascending: true
-                }
-            );
-
-
-        if (visitorError) {
-
-            console.error(
-                "Visitor analytics error:",
-                visitorError
-            );
-
-            document.getElementById(
-                "analyticsUpdated"
-            ).textContent =
-                "Unable to load";
-
-            return;
-
-        }
-
-
-        const visitorList =
-            visitors || [];
-
-
-        const now =
-            new Date();
-
-
-        const todayStart =
-            new Date(
-                now.getFullYear(),
-                now.getMonth(),
-                now.getDate()
-            );
-
-
-        const monthStart =
-            new Date(
-                now.getFullYear(),
-                now.getMonth(),
-                1
-            );
-
-
-        const totalVisitors =
-            visitorList.length;
-
-
-        const todayVisitors =
-            visitorList.filter(
-                visitor =>
-                    new Date(
-                        visitor.visited_at
-                    ) >= todayStart
-            ).length;
-
-
-        const monthVisitors =
-            visitorList.filter(
-                visitor =>
-                    new Date(
-                        visitor.visited_at
-                    ) >= monthStart
-            ).length;
-
-
-        const unreadMessages =
-            allMessages.filter(
-                message =>
-                    !message.is_read
-            ).length;
-
-
-        document.getElementById(
-            "analyticsTotalVisitors"
-        ).textContent =
-            totalVisitors;
-
-
-        document.getElementById(
-            "analyticsTodayVisitors"
-        ).textContent =
-            todayVisitors;
-
-
-        document.getElementById(
-            "analyticsMonthVisitors"
-        ).textContent =
-            monthVisitors;
-
-
-        document.getElementById(
-            "analyticsTotalMessages"
-        ).textContent =
-            allMessages.length;
-
-
-        document.getElementById(
-            "analyticsUnreadMessages"
-        ).textContent =
-            unreadMessages;
-
-
-        renderVisitorChart(
-            visitorList
-        );
-
-
-        document.getElementById(
-            "analyticsUpdated"
-        ).textContent =
-            "Updated just now";
-
-    } catch (error) {
-
-        console.error(
-            "Advanced analytics exception:",
-            error
-        );
-
-    }
-
-}
-
-
-/* VISITOR CHART */
-
-function renderVisitorChart(
-    visitors
-) {
-
-    const chart =
-        document.getElementById(
-            "visitorChart"
-        );
-
-
-    if (!chart) {
-
-        return;
-
-    }
-
-
-    const now =
-        new Date();
-
-
-    const days = [];
-
-
-    for (
-        let i = 6;
-        i >= 0;
-        i--
-    ) {
-
-        const date =
-            new Date(now);
-
-
-        date.setHours(
-            0,
-            0,
-            0,
-            0
-        );
-
-
-        date.setDate(
-            date.getDate() - i
-        );
-
-
-        const next =
-            new Date(date);
-
-
-        next.setDate(
-            next.getDate() + 1
-        );
-
-
-        const count =
-            visitors.filter(
-                visitor => {
-
-                    const visitDate =
-                        new Date(
-                            visitor.visited_at
-                        );
-
-
-                    return (
-                        visitDate >= date &&
-                        visitDate < next
-                    );
-
-                }
-            ).length;
-
-
-        days.push({
-            date,
-            count
-        });
-
-    }
-
-
-    const max =
-        Math.max(
-            ...days.map(
-                day =>
-                    day.count
-            ),
-            1
-        );
-
-
-    chart.innerHTML =
-        days.map(
-            day => {
-
-                const height =
-                    Math.max(
-                        3,
-                        (
-                            day.count /
-                            max
-                        ) *
-                        170
-                    );
-
-
-                const label =
-                    day.date.toLocaleDateString(
-                        undefined,
-                        {
-                            weekday:
-                                "short"
-                        }
-                    );
-
-
-                return `
-                    <div class="visitor-day">
-
-                        <div class="visitor-count">
-                            ${day.count}
-                        </div>
-
-                        <div
-                            class="visitor-bar"
-                            style="height:${height}px"
-                            title="${day.count} visitor${day.count === 1 ? "" : "s"}"
-                        ></div>
-
-                        <div class="visitor-label">
-                            ${label}
-                        </div>
-
-                    </div>
-                `;
-
-            }
-        )
-        .join("");
-
-}
-
-
-/* RENDER MESSAGES */
-
-window.renderMessages =
-function() {
-
-    const list =
-        document.getElementById(
-            "messageList"
-        );
-
-
-    const search =
-        document.getElementById(
-            "searchInput"
-        )
-        .value
-        .toLowerCase()
-        .trim();
-
-
-    const filter =
-        document.getElementById(
-            "filterSelect"
-        ).value;
-
-
-    const filtered =
-        allMessages.filter(
-            message => {
-
-                const text =
-                    `${message.name} ${message.email} ${message.message}`
-                    .toLowerCase();
-
-
-                const searchMatch =
-                    text.includes(
-                        search
-                    );
-
-
-                let filterMatch =
-                    true;
-
-
-                if (
-                    filter === "unread"
-                ) {
-
-                    filterMatch =
-                        !message.is_read;
-
-                }
-
-
-                if (
-                    filter === "read"
-                ) {
-
-                    filterMatch =
-                        message.is_read;
-
-                }
-
-
-                return (
-                    searchMatch &&
-                    filterMatch
-                );
-
-            }
-        );
-
-
-    document.getElementById(
-        "resultBadge"
-    ).textContent =
-        `${filtered.length} message${filtered.length === 1 ? "" : "s"}`;
-
-
-    if (
-        filtered.length === 0
-    ) {
-
-        list.innerHTML =
-            `<div class="empty">
-                No messages found.
-            </div>`;
-
-        return;
-
-    }
-
-
-    list.innerHTML =
-        filtered.map(
-            message => {
-
-                const date =
-                    new Date(
-                        message.created_at
-                    );
-
-
-                const formatted =
-                    date.toLocaleString(
-                        undefined,
-                        {
-                            dateStyle:
-                                "medium",
-                            timeStyle:
-                                "short"
-                        }
-                    );
-
-
-                const initial =
-                    escapeHtml(
-                        String(
-                            message.name ||
-                            "U"
-                        )
-                        .charAt(0)
-                        .toUpperCase()
-                    );
-
-
-                return `
-                    <div
-                        class="message-card ${
-                            message.is_read
-                            ? ""
-                            : "unread"
-                        }"
-                    >
-
-                        <div class="message-top">
-
-                            <div class="person">
-
-                                <div class="avatar">
-                                    ${initial}
-                                </div>
-
-                                <div>
-
-                                    <div class="message-name">
-                                        ${escapeHtml(
-                                            message.name
-                                        )}
-                                    </div>
-
-                                    <div class="message-email">
-                                        ${escapeHtml(
-                                            message.email
-                                        )}
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="message-date">
-                                ${formatted}
-                            </div>
-
-                        </div>
-
-
-                        <div class="message-text">
-                            ${escapeHtml(
-                                message.message
-                            )}
-                        </div>
-
-
-                        <div class="message-actions">
-
-                            ${
-                                message.is_read
-                                ? `
-                                    <button
-                                        class="action-btn"
-                                        onclick="markUnread(${message.id})"
-                                    >
-                                        Mark Unread
-                                    </button>
-                                `
-                                : `
-                                    <button
-                                        class="action-btn"
-                                        onclick="markRead(${message.id})"
-                                    >
-                                        ✓ Mark Read
-                                    </button>
-                                `
-                            }
-
-
-                            <button
-                                class="action-btn"
-                                onclick="deleteMessage(${message.id})"
-                            >
-                                Delete
-                            </button>
-
-                        </div>
-
-                    </div>
-                `;
-
-            }
-        )
-        .join("");
-
-};
-
-
-/* ESCAPE */
-
-function escapeHtml(value) {
-
-    return String(value)
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* MARK READ */
-
-window.markRead =
-async function(id) {
-
-    const {
-        error
-    } = await supabase
-        .from("messages")
-        .update({
-            is_read: true
-        })
-        .eq(
-            "id",
-            id
-        );
-
-
-    if (error) {
-
-        alert(
-            "Could not mark as read."
-        );
-
-        console.error(error);
-
-        return;
-
-    }
-
-
-    await loadMessages();
-    await loadAdvancedAnalytics();
-
-};
-
-
-/* MARK UNREAD */
-
-window.markUnread =
-async function(id) {
-
-    const {
-        error
-    } = await supabase
-        .from("messages")
-        .update({
-            is_read: false
-        })
-        .eq(
-            "id",
-            id
-        );
-
-
-    if (error) {
-
-        alert(
-            "Could not mark as unread."
-        );
-
-        console.error(error);
-
-        return;
-
-    }
-
-
-    await loadMessages();
-    await loadAdvancedAnalytics();
-
-};
-
-
-/* DELETE */
-
-window.deleteMessage =
-async function(id) {
-
-    const confirmDelete =
-        confirm(
-            "Are you sure you want to delete this message?"
-        );
-
-
-    if (!confirmDelete) {
-
-        return;
-
-    }
-
-
-    const {
-        error
-    } = await supabase
-        .from("messages")
-        .delete()
-        .eq(
-            "id",
-            id
-        );
-
-
-    if (error) {
-
-        alert(
-            "Could not delete message."
-        );
-
-        console.error(error);
-
-        return;
-
-    }
-
-
-    await loadMessages();
-    await loadAdvancedAnalytics();
-
-};
-
-
-/* NOTIFICATIONS */
-
-window.showNotifications =
-function() {
-
-    const notificationsEnabled =
-        currentSettings
-        ? currentSettings.notifications_enabled !== false
-        : true;
-
-
-    if (!notificationsEnabled) {
-
-        showToast(
-            "Notifications are disabled"
-        );
-
-        return;
-
-    }
-
-
-    const unread =
-        allMessages.filter(
-            message =>
-                !message.is_read
-        ).length;
-
-
-    if (unread === 0) {
-
-        showToast(
-            "✓ No new messages"
-        );
-
-        return;
-
-    }
-
-
-    showToast(
-        `🔔 You have ${unread} unread message${unread === 1 ? "" : "s"}`
-    );
-
-};
-
-
-/* TOAST */
-
-function showToast(message) {
-
-    const toast =
-        document.getElementById(
-            "toast"
-        );
-
-
-    toast.textContent =
-        message;
-
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    setTimeout(
-        () => {
-
-            toast.classList.remove(
-                "show"
-            );
-
-        },
-        3000
-    );
-
-}
-
-
-/* LOGOUT */
-
-window.logout =
-async function() {
-
-    await supabase.auth.signOut();
-
-
-    window.location.href =
-        "owner-login.html";
-
-};
-
-
-/* AUTO REFRESH */
-
-setInterval(
-    async () => {
-
-        await loadMessages();
-
-        await loadAdvancedAnalytics();
-
-    },
-    30000
-);
-
-
-/* REALTIME NEW MESSAGE NOTIFICATIONS */
-
-supabase
-    .channel("messages-realtime")
-    .on(
-        "postgres_changes",
-        {
-            event: "INSERT",
-            schema: "public",
-            table: "messages"
-        },
-        async (payload) => {
-
-            const notificationsEnabled =
-                currentSettings
-                ? currentSettings.notifications_enabled !== false
-                : true;
-
-
-            if (!notificationsEnabled) {
-
-                return;
-
-            }
-
-
-            await loadMessages();
-
-            await loadAdvancedAnalytics();
-
-
-            showToast(
-                "🔔 New message received"
-            );
-
-
-            if (
-                "Notification" in window &&
-                Notification.permission === "granted"
-            ) {
-
-                new Notification(
-                    "New message received",
-                    {
-                        body:
-                            `${payload.new.name || "Someone"} sent you a new message.`
-                    }
-                );
-
-            }
-
-        }
-    )
-    .subscribe();
-
-
-/* BROWSER NOTIFICATION PERMISSION */
-
-async function requestNotificationPermission() {
-
-    if (
-        !("Notification" in window)
-    ) {
-
-        return;
-
-    }
-
-
-    if (
-        Notification.permission === "default"
-    ) {
-
-        await Notification.requestPermission();
-
-    }
-
-}
-
-
-/* START */
-
-async function startDashboard() {
-
-    const owner =
-        await checkOwner();
-
-
-    if (!owner) {
-
-        return;
-
-    }
-
-
-    await loadSettings();
-
-    await loadOwnerProfile();
-
-    await requestNotificationPermission();
-
-    await loadMessages();
-
-    await loadAdvancedAnalytics();
-
-}
-
-
-startDashboard();
-
-</script>
-
-</body>
-</html>
