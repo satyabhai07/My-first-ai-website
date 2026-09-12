@@ -1630,7 +1630,75 @@ body {
         </button>
 
     </section>
+    <!-- USER MANAGEMENT -->
 
+    <section class="section-card user-management">
+
+        <div class="section-title">
+
+            <div>
+                <h2>
+                    User Management
+                </h2>
+
+                <p>
+                    Manage registered users and account status.
+                </p>
+            </div>
+
+            <span
+                class="badge"
+                id="userResultBadge"
+            >
+                0 users
+            </span>
+
+        </div>
+
+
+        <div class="user-controls">
+
+            <input
+                id="userSearchInput"
+                class="search"
+                type="text"
+                placeholder="Search users..."
+                oninput="renderUsers()"
+            >
+
+            <select
+                id="userStatusFilter"
+                class="filter"
+                onchange="renderUsers()"
+            >
+                <option value="all">
+                    All
+                </option>
+
+                <option value="active">
+                    Active
+                </option>
+
+                <option value="blocked">
+                    Blocked
+                </option>
+            </select>
+
+        </div>
+
+
+        <div
+            id="userList"
+            class="user-list"
+        >
+
+            <div class="loading">
+                Loading users...
+            </div>
+
+        </div>
+
+    </section>
 
     <!-- MESSAGES -->
 
